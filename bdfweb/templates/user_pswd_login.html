@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Login with Password 
+{% endblock %}
+
+{% block content %}
+
+<!-- Login/Register Form -->
+<div class=" flex flex-col py-6 justify-center antialiased text-center">
+    <!--  -->
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <!-- Heading -->
+        <span class="text-2xl font-light text-gray-800">Login with your password </span>
+        <div class="mt-3 bg-white shadow-lg rounded-lg">
+            <div class="h-2 bg-brightRed rounded-t-md"></div>
+        <form method="post" id="loginform">
+            {% csrf_token %}
+            <div class="px-8 py-6" id="ologin">
+                <label for="" class="block font-light text-gray-400 text-xs"></label>
+
+                <!-- Email Input Field -->
+                <input type="email" name="uemailid" placeholder="E-mail address" class="border w-full h-5 px-2 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-brightRed rounded-md" required>
+
+                <!-- Password Input Field -->
+                <input type="password" name="upassword" placeholder="Password" class="border w-full h-5 px-2 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-brightRed rounded-md">
+                <div class="flex justify-between items-baseline" required>
+                    <button type="submit" class="mt-4 bg-brightRed text-white py-2 px-5 rounded-full hover:bg-brightRedLight">Login</button>
+                    <a href="{% url 'register'%}" id="pswdloginswitch" class="text-brightRed text-xs ">OTP Login</a>
+                     
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- redirect to homepage if no errors when user login with password -->
+{% if error == "no" %}
+
+<script>
+
+    alert('Login Succesful'); 
+    window.location=("{% url 'user_home' %}");
+
+</script>
+{% endif %}
+
+
+<!-- Display error message if there is any error  when dding data to database -->
+{% if error == "yes" %}
+
+
+<script>
+    alert('Invalid Login Credentials..!'); 
+</script>
+{% endif %} 
+
+
+{% endblock %}
