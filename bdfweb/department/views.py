@@ -69,6 +69,13 @@ def donor_requests(request):
     return render(request, 'dep_donor_requests.html', locals())
 
 
+def donor_details(request,pid):
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    donor = DonorAppointment.objects.get(id=pid)
+    return render(request, 'dep_view_donor_details.html', locals())
+
+
 def dep_dashboard(request):
     return render(request, 'dep_dashboard.html')
 

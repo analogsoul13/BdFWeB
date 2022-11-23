@@ -183,11 +183,41 @@ def view_appointments(request):
     return render(request, 'user_view_appointments.html', locals())
 
 
-# User Requesting a campaign for patient
+# User Requesting a campaign for patient to hospital
 def request_campaign(request):
     if not request.user.is_authenticated:
         return redirect('register')
+    user = request.user
+    donor = Donor.objects.get(user=user)
+    if request.method=="POST":
+        pfname = request.POST.get('patientfname')
+        plname = request.POST.get('patientlname')
+        page = request.POST.get('patientage')
+        pplace = request.POST.get('patientplace')
+        ppin = request.POST.get('patientpin')
+        pmob = request.POST.get('patientmob')
+        pamount = request.POST.get('patientamount')
+        pdescription = request.POST.get('patientdescription')
+        phospital = request.POST.get('patienthospital')
+        prwithpatient = request.POST.get('userrelationwithpatient')
+        pdocumentpic = request.FILES.get('patientmedicaldocpic')
+        ppic = request.FILES.get('patientpic')
+        try:
+            ReqCampaign.objects.create(user=donor, fname=pfname, lname=plname, age=page, place=pplace, pin=ppin, mob=pmob, amount=pamount, description=pdescription, hospital=phospital, rwithpatient=prwithpatient, documentpic=pdocumentpic, patientpic=ppic, status="pending")
+            error="no"
+        except:
+            error="yes"
     return render(request, 'user_request_campaign.html')
+
+
+# Display campaigns requested by user
+def view_campaigns(request):
+    if not request.user.is_authenticated:
+        return redirect('register')
+    user = request.user
+    donor = Donor.objects.get(user=user)
+    campaigns = ReqCampaign.objects.filter(user=donor)
+    return render(request, 'user_view_campaigns.html', locals())
 
 
 # User About Us

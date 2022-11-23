@@ -7,7 +7,7 @@ from datetime import datetime, date
 # Create your models here.
 # custom user model for otp verification
 # need to work on this user model (not working)
-
+# user / donor model where every registerng is saved
 class Donor (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contact = models.CharField(max_length=15, null=True)
@@ -72,6 +72,31 @@ class DonorAppointment (models.Model):
 
     def __str__(self):
         return self.mob
+
+
+class ReqCampaign (models.Model):
+    user = models.ForeignKey(Donor, on_delete=models.CASCADE)
+    fname = models.CharField(max_length=50)
+    lname = models.CharField(max_length=50)
+    age = models.CharField(max_length=2)
+    place = models.CharField(max_length=50)
+    pin = models.CharField(max_length=6)
+    mob = models.CharField(max_length=15, null=True)
+    amount = models.CharField(max_length=10)
+    description = models.CharField(max_length=200)
+    hospital = models.CharField(max_length=100)
+    rwithpatient = models.CharField(max_length=10)
+    documentpic = models.FileField(null=True)
+    patientpic = models.FileField(null=True)
+    status = models.CharField(max_length=40, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    departmentremark = models.CharField(max_length=300, null=True)
+    updationdate = models.DateField(null=True)
+
+    def __str__(self):
+        return self.mob
+
+
 
 
 

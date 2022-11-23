@@ -54,6 +54,9 @@ Request A Campaign
                  <!-- Mobile Number Field -->
                  <input type="tel" placeholder="Mobile Number" name="patientmob" class="text-sm border w-full  h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
 
+                  <!-- Amount To Be Raised -->
+                <input type="text" placeholder="Amount In Rs" name="patientamount" class="text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
                   <!-- Description field -->
                 <input type="text" placeholder="Description" name="patientdescription" class="text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
 
@@ -97,7 +100,7 @@ Request A Campaign
               <!-- Add Patient Hospital Details -->
                   <label for="patientdoc" class="block mb-2 mt-2 text-xs text-brightRed text-center">Add The Medical Documents</label>
                   <input type="file"
-                  name="userpic"
+                  name="patientmedicaldocpic"
                   class="form-control text-sm mt-2
                   block
                   w-full
@@ -116,7 +119,7 @@ Request A Campaign
               <!-- Add Profile Pic -->
                   <label for="patientpic" class="block mb-2 mt-2 text-xs text-brightRed text-center">Add a Picture Of Patient (optional)</label>
                   <input type="file"
-                  name="userpic"
+                  name="patientpic"
                   class="form-control text-sm mt-2
                   block
                   w-full
@@ -143,20 +146,6 @@ Request A Campaign
 </div>
 
 
-
-<!-- Custom Alert Not Completed -->
-<div class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700" role="alert">
-    <h4 class="text-2xl font-medium leading-tight mb-2">Well done!</h4>
-    <p class="mb-4">
-      Aww yeah, you successfully read this important alert message. This example text is
-      going to run a bit longer so that you can see how spacing within an alert works with
-      this kind of content.
-    </p>
-    <hr class="border-green-600 opacity-30">
-    <p class="mt-4 mb-0">
-      Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
-    </p>
-  </div>
 
 <!-- Error Message -->
 {% if error == "no" %}

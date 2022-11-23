@@ -1,0 +1,168 @@
+{% extends 'user_base.html' %}
+
+{% block title %} 
+    My Campaign Requests
+{% endblock %}
+  
+{% block content %}
+
+<!-- component -->
+
+
+
+    <div class="flex flex-col justify-center h-full ">
+        <!-- Table -->
+        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <header class="px-5 py-4 border-b border-gray-100">
+                <div class="font-semibold text-gray-800">Campaigns Requested By You</div>
+            </header>
+
+            <div class="overflow-x-auto p-3">
+                <table class="table-auto w-full">
+                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                        <tr>
+                            
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Name</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Place</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Pin</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Age</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-center">Mobile</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-center">Status</div>
+                            </th>
+                        </tr>
+                    </thead>
+                {% for i in campaigns %}
+                    <tbody class="text-sm divide-y divide-gray-100">
+                        
+                        <!-- record 1 -->
+                        <tr>
+                            
+                            <td class="p-2 text-red-600">
+                                <div class="font-medium text-gray-800">
+                                   {{i.fname}} {{i.lname}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left">
+                                    {{i.place}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left">
+                                    {{i.pin}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    {{i.age}}
+                                </div>
+                            </td>
+                            <td class="p-2 text-green-500">
+                                <div class="flex justify-center" >
+                                    {{i.mob}}
+                                </div>
+                            </td>
+                            <td class="p-2 text-red-600">
+                                <div class="flex justify-center" >
+                                    {{i.status}}
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        
+                    </tbody>
+                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                        <tr>
+                            
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Description</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Hospital</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Relation</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-center">Picture</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-center">Document</div>
+                            </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-center">Remark</div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-sm divide-y divide-gray-100">
+                        <!-- record 2 -->
+                        <tr>
+                            
+                            <td class="p-2">
+                                <div class="font-medium text-red-600">
+                                    {{i.description}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left">
+                                    {{i.hospital}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    {{i.rwithpatient}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    <img class="rounded-full" src="{{i.patientpic.url}}" width="40" height="40" alt="Patient Document">
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="">
+                                    <img class="rounded-full" src="{{i.documentpic.url}}" width="40" height="40" alt="Patient Document">
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="text-left font-medium text-green-500">
+                                    {{i.departmentremark}}
+                                </div>
+                            </td>
+                            <td class="p-2">
+                                <div class="flex justify-center">
+                                   
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        
+                    </tbody>
+                {% endfor %}
+                </table>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex justify-end font-bold  space-x-4 text-sm border-t bg-brightRed border-gray-100 px-5 py-4">
+                <button class="bg-white rounded-lg p-2 ">Delete</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

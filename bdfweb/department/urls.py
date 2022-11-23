@@ -10,6 +10,7 @@ urlpatterns = [
     path('dep_dashboard/', views.dep_dashboard, name='dep_dashboard'),
     path('dep_profile/', views.dep_profile, name='dep_profile'),
     path('donor_requests/', views.donor_requests, name='donor_requests'),
+    path('view_donor_details/<int:pid>', views.donor_details, name='donor_details'),
     path('logout/', views.Logout, name='dep_logout'),
 
     
