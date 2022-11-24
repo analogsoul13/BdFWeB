@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from user.models import DonorAppointment, Donor
+from datetime import datetime
 
 
 
@@ -73,6 +74,17 @@ def donor_details(request,pid):
     if not request.user.is_authenticated:
         return redirect('dep_login')
     donor = DonorAppointment.objects.get(id=pid)
+    if request.method == "POST":
+        status = request.POST.get('appointmentstatus')
+        depremark = request.POST.get('departmentremark')
+        try:
+            donor.departmentremark = depremark
+            donor.status = status
+            donor.updationdate = datetime.now()
+            donor.save()
+            error = "no"
+        except:
+            error = "yes"
     return render(request, 'dep_view_donor_details.html', locals())
 
 

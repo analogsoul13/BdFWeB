@@ -7,128 +7,130 @@ Donor Details
 {% block content %}
 
 {% load static %}
-<div class="antialiased bg-gray-100 text-gray-600 h-screen ml-14 mt-14 mb-10 md:ml-64 px-4">
-    <div class="flex flex-col bg-white w-full h-auto rounded-md">
-        <div class="flex justify-center p-4">
-            <p class="text-2xl item-center">View Donor Details</p>
-        </div>
-        <div class="bg-gray-700 h-1"></div>
 
-        <!-- Name of Dep -->
-        <div class="flex flex-row w-full h-full">
+<div class="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 h-screen ml-14 mt-14 mb-10 md:ml-64 px-4 ">
+    <!-- Table -->
+    <div class="w-full max-w-screen mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <header class="px-5 py-4 border-b border-gray-100">
+            <div class="font-semibold text-gray-800">Donor Appointment Details</div>
+        </header>
 
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Name of Donor :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100 justify-start">
-                <p class="text-gray-800 text-md font-bold font-sans p-2">{{donor.fname}} {{donor.lname}}</p>
-
-            </div>
+        <div class="overflow-x-auto p-3">
+            <table class="table-auto w-full">
+                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                    <tr>
+                        
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Name</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Blood Group</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Age</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Regular Donor</div>
+                        </th>
+                    </tr>
+                </thead>
             
-        </div>
-
-        <!-- Contact & Email -->
-        <div class="flex flex-row w-full h-14">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Contact No & Email :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100">
-                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{donor.mob}}, {{user.mail}}</p>
-            </div>
-        
-        </div>
-
-        <!-- Address -->
-        <div class="flex flex-row w-full h-14">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Address :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100">
-                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{donor.place}}</p>
-            </div>
-        
-        </div>
-
-        <!-- Pin -->
-        <div class="flex flex-row w-full h-14">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Pin :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100">
-                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{donor.pin}}</p>
-            </div>
-        
-        </div>
-
-        <!-- Picture -->
-        <div class="flex flex-row w-full h-24">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Picture :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100 p-2">
-                <img src="{{department.deppic.url}}" alt="Department Image" class="scale-100 ">
-            </div>
-        
-        </div>
-
-        <!-- ID -->
-        <div class="flex flex-row w-full h-24">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">ID :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100 p-2">
-                <img src="{{department.depidpic.url}}" alt="Department Id" class="scale-100">
-            </div>
-        
-        </div>
-
-        <!-- About -->
-        <div class="flex flex-row w-full h-full">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">About :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100">
-                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.aboutdep}}</p>
-            </div>
-        
-        </div>
-
-        <!-- Reg date -->
-        <div class="flex flex-row w-full h-14">
-
-            <div class="flex w-1/2 justify-end">
-                <p class="text-gray-800 text-md font-sans p-3">Registration Date :</p>
-            </div>
-            <div class="flex w-1/2 bg-red-100">
-                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.regdate}}</p>
-            </div>
-        
-        </div>
-
-        <!-- Current Status -->
-        {% if department.status == "pending" %}
-        <div>
-            <form method="post">
-        
-            <div class="flex flex-row w-full h-full">
-                
-
-                <div class="flex w-1/2 justify-end">
-                    <p class="text-gray-800 text-md font-sans p-3">Status :</p>
-                </div>
-                <div class="flex w-1/2 bg-red-100 p-2">
+                <tbody class="text-sm divide-y divide-gray-100">
                     
+                    <!-- record 1 -->
+                    <tr>
+                        
+                        <td class="p-2">
+                            <div class="font-medium text-gray-800">
+                               {{donor.fname}} {{donor.lname}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left">
+                                {{donor.bloodgroup}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left font-medium text-green-500">
+                                {{donor.age}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left font-medium text-green-500">
+                                {{donor.regulardonor}}
+                            </div>
+                        </td>
+                    </tr>
+
+
                     
+                </tbody>
+                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                    <tr>
+                        
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Appointment Date</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Mobile Number</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Place</div>
+                        </th>
+                        <th class="p-2">
+                            <div class="font-semibold text-left">Pin</div>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-sm divide-y divide-gray-100">
+                    <!-- record 2 -->
+                    <tr>
+                        
+                        <td class="p-2">
+                            <div class="font-medium text-red-600">
+                                {{donor.appointmentdate}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left">
+                                {{donor.mob}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left font-medium text-green-500">
+                                {{donor.place}}
+                            </div>
+                        </td>
+                        <td class="p-2">
+                            <div class="text-left font-medium">
+                                {{donor.pin}}
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    
+                </tbody>
+            
+            </table>
+        </div>
+
+        <!-- Department Activity -->
+        {% if donor.status == "pending" %}
+        <div class="flex flex-col md:justify-between md:flex-row space-x-2 border-t bg-white">
+        <form method="post" class="flex flex-col md:flex-row text-gray-400 w-full justify-between">
+            <!-- Status Update -->
+                <div class="flex text-gray-400 w-full md:w-1/2 justify-between">
+                    <p class="uppercase p-4">Status :</p>
+                    <div class="w-1/2 p-4">
                         {% csrf_token %}
-                            <select class="form-select appearance-none
+                        <select class="form-select appearance-none
                                 block
-                                max-w-full
+                                w-full
+                                sm:w-1/2
+                                h-14
+                                p-4
                                 text-base
                                 font-normal
                                 text-gray-700
@@ -138,82 +140,74 @@ Donor Details
                                 transition
                                 ease-in-out
                                 m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" name="status">
+                                
+                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" name="appointmentstatus">
                                 <option selected>Pending</option>
                                 <option value="approved">Approve</option>
                                 <option value="rejected">Reject</option>
-                            </select>             
-                </div>
-            
-            </div>
+                        </select>
 
-            <!-- Admin remark -->
-            <div class="flex flex-row w-full h-full">
+                    </div>
+                    
 
-                <div class="flex w-1/2 justify-end">
-                    <p class="text-gray-800 text-md font-sans p-3">Admin Remark :</p>
                 </div>
-                <div class="flex flex-col w-1/2 bg-red-100 p-2">
-                    <textarea class="form-control block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="remark" id="exampleFormControlTextarea1" rows="3" placeholder="Your message"></textarea>
-                </div>
-            
-            </div>
 
-            <div class="flex space-x-2 justify-center p-3">
-                <button type="submit" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</button>
+            <!-- Remark -->
+                <div class="flex text-gray-400 w-full md:w-1/2 justify-between">
+                    <p class="uppercase p-4">Remark :</p>
+                    <div class="w-1/2 p-2">
+                        <textarea class="form-control block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="departmentremark" id="exampleFormControlTextarea1" rows="3" placeholder="Your message"></textarea>
+                    </div>
+                    
+
+                </div>
+
+            <!-- Button -->
+            <div class="flex justify-center font-bold text-sm border-t bg-darkBlue border-gray-100 px-5 py-4">
+                <button type="submit" class="bg-white rounded-lg p-2 ">Update</button>
             </div>
         </form>
+
         </div>
 
         {% else %}
-            <!-- Status -->
-            <div class="flex flex-row w-full h-14">
-
-                <div class="flex w-1/2 justify-end">
-                    <p class="text-gray-800 text-md font-sans p-3">Status :</p>
-                </div>
-                <div class="flex w-1/2 bg-red-100">
-                    <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.status}}</p>
-                </div>
+        <!-- Department Activity 2 -->
+        <div class="flex flex-col md:justify-between md:flex-row space-x-2 border-t bg-white">
             
-            </div>
-            <div class="flex flex-row w-full h-14">
-
-                <div class="flex w-1/2 justify-end">
-                    <p class="text-gray-800 text-md font-sans p-3">Admin Remark :</p>
-                </div>
-                <div class="flex w-1/2 bg-red-100">
-                    <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.adminremark}}</p>
-                </div>
+            <!-- Status Update -->
             
-            </div>
+                <div class="flex text-gray-400 w-full md:w-1/2 justify-between">
+                    <p class="uppercase p-4">Status :</p>
+                    <div class="w-1/2 p-6">
+                        
+                        <p>{{ donor.status }}</p>
 
-            <!-- Updation Date -->
-            <div class="flex flex-row w-full h-full">
-
-                <div class="flex w-1/2 justify-end">
-                    <p class="text-gray-800 text-md font-sans p-3">Updation Date :</p>
-                </div>
-                <div class="flex w-1/2 bg-red-100">
-                    <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.updationdate}}</p>
-                </div>
+                    </div>
                     
-            </div>
 
+                </div>
+
+            <!-- Remark -->
+                <div class="flex text-gray-400 w-full md:w-1/2 justify-between">
+                    <p class="uppercase p-4">Remark :</p>
+                    <div class="w-1/2 p-2">
+                        <p>{{ donor.departmentremark }}
+                        </p>
+                    </div>
+                    
+
+                </div>
+
+        </div>
         {% endif %}
 
-        
-
-    </div>
-    <div class="flex justify-center p-6">
-    <p class="text-gray-500 text-xs">analogsoul13</p>
     </div>
 </div>
 
 {% if error == "no" %}
 <script>
     alert('Status & remark has been updated succesfully');
-    window.location=("{% url 'dep_details' department.id %}");
+    window.location=("{% url 'donor_details' donor.id %}");
 </script>
 {% endif %}
 
