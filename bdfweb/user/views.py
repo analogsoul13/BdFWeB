@@ -189,6 +189,7 @@ def request_campaign(request):
         return redirect('register')
     user = request.user
     donor = Donor.objects.get(user=user)
+    hospital = Department.objects.filter(status="approved")
     if request.method=="POST":
         pfname = request.POST.get('patientfname')
         plname = request.POST.get('patientlname')

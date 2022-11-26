@@ -4,9 +4,10 @@ from .models import *
 from user.models import ReqBlood
 from user.models import Donor
 from user.models import User
+from user.models import DonorAppointment
 from department.models import Department
 from datetime import datetime
-
+from django.db.models import Q, Count
 # Create your views here.
 # login and authentication of admin
 def admin_login(request):
@@ -32,7 +33,9 @@ def admin_home(request):
         return redirect('admin_login')
     total_requests = Department.objects.count()
     total_users = Donor.objects.count()
-    total = {'total_requests' :total_requests ,'total_users' :total_users}
+    total_departments = Department.objects.filter(status="approved")
+    departments = total_departments.count()
+    total = {'total_requests' :total_requests ,'total_users' :total_users , 'total_departments' :total_departments, 'departments' :departments}
     return render(request, 'admin_home.html', total)
 
 
@@ -51,6 +54,14 @@ def all_users(request):
         return redirect('admin_login')
     donor = Donor.objects.all
     return render(request, 'admin_all_users.html',locals())
+
+
+# Display All Verified Regular Donors  
+def verified_donors(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    donors = DonorAppointment.objects.all
+    return render(request, 'admin_verified_donors.html',locals())
 
 
 # View User Details   

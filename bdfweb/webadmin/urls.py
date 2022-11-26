@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin_home/', views.admin_home, name='admin_home'),
     path('user_created_posts/', views.user_created_posts, name='user_created_posts'),
     path('all_users/', views.all_users, name='all_users'),
+    path('verified_donors/', views.verified_donors, name='verified_donors'),
     path('view_user_details/<int:pid>', views.user_details, name='view_user_details'),
     path('admin_profile/', views.admin_profile, name='admin_profile'),
     path('delete_donor/<int:pid>', views.admin_delete_donor, name='delete_donor'),
