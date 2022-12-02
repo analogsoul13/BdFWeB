@@ -89,12 +89,20 @@ def donor_details(request,pid):
 
 
 
-
+# Department can view all approved upcoming appointments
 def scheduled_appointments(request):
     if not request.user.is_authenticated:
         return redirect('dep_login')
     appointment = DonorAppointment.objects.filter(status="approved")
     return render(request, 'dep_scheduled_appointments.html', locals())
+
+
+
+def create_fundraiser(request):
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    appointment = DonorAppointment.objects.filter(status="approved")
+    return render(request, 'dep_create_fundraiser.html', locals())
 
 
 def dep_dashboard(request):
