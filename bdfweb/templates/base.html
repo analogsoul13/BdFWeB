@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body class="bg-[url('../img/bg-tablet-pattern.svg')] bg-[length:800px_800px]">
@@ -21,7 +24,7 @@
         </div>
         <!-- Menu Items -->
         <div class="hidden space-x-8 md:flex pt-4">
-            <a href="{% url 'home' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed">Home</a>
+            <a href="{% url 'home' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed ">Home</a>
             <a href="{% url 'blood_banks' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed">Blood Banks</a>
             <!-- DropDown -->
             <div class="dropdown">

@@ -5039,6 +5039,9 @@ textarea.form-control.is-invalid {
 .align-middle {
   vertical-align: middle;
 }
+.font-poppins {
+  font-family: Poppins;
+}
 .font-sans {
   font-family: Inter, sans-serif;
 }

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from user.models import ReqBlood
+from user.models import ReqCampaign
 from user.models import Donor
 from user.models import User
 from user.models import DonorAppointment
@@ -140,6 +141,14 @@ def dep_details(request, pid):
 def delete_dep(request,pid):
     Department.objects.get(id=pid).delete()
     return redirect('view_all_dep')
+
+
+# Display all Requests from user for a fundraiser and assign to the hospital
+def fundraising_requests(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    fund_requests = ReqCampaign.objects.all()
+    return render(request, 'admin_fundraising_requests.html', locals())
 
 
 # Admin logout

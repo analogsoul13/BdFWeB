@@ -88,8 +88,19 @@ def donor_details(request,pid):
     return render(request, 'dep_view_donor_details.html', locals())
 
 
+
+
+def scheduled_appointments(request):
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    appointment = DonorAppointment.objects.filter(status="approved")
+    return render(request, 'dep_scheduled_appointments.html', locals())
+
+
 def dep_dashboard(request):
-    return render(request, 'dep_dashboard.html')
+    donors = DonorAppointment.objects.count()
+    data ={'donors' : donors}
+    return render(request, 'dep_dashboard.html', data)
 
 
 def dep_profile(request):

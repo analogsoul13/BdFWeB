@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
@@ -8,12 +9,12 @@ from department.models import Department
 
 
 # Create your views here.
-
+# otp login not implemented
 def user_otp_login(request):
     return render(request, 'user_login.html')
 
 
-
+# verify otp not implemented
 def verify_otp(request):
     return render(request, 'verify_otp.html')
     
@@ -100,7 +101,7 @@ def Logout(request):
     return redirect ('home')
 
 
-
+# user dashboard
 def user_dashboard(request):
     return render(request, 'user_dashboard.html')
 
@@ -140,6 +141,7 @@ def post_details(request):
     return render(request, 'user_post_details.html',locals())
 
 
+# user profile page
 def user_profile(request):
     return render(request, 'user_profile.html')
 
@@ -174,6 +176,7 @@ def make_appointment(request):
     return render(request, 'user_make_appointment.html', locals())
 
 
+# View appointments 
 def view_appointments(request):
     if not request.user.is_authenticated:
         return redirect('register')
@@ -189,7 +192,6 @@ def request_campaign(request):
         return redirect('register')
     user = request.user
     donor = Donor.objects.get(user=user)
-    hospital = Department.objects.filter(status="approved")
     if request.method=="POST":
         pfname = request.POST.get('patientfname')
         plname = request.POST.get('patientlname')
@@ -210,6 +212,16 @@ def request_campaign(request):
             error="yes"
     return render(request, 'user_request_campaign.html')
 
+
+# auto suggest hospital
+def autosuggest(request):
+    print(request.GET)
+    query_original = request.GET.get('term')
+    queryset = Department.objects.filter(depname__icontains=query_original)
+    mylist= []
+    mylist += [x.depname for x in queryset]
+    return JsonResponse(mylist,safe=False)
+    
 
 # Display campaigns requested by user
 def view_campaigns(request):
