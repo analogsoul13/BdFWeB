@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
-from user.models import DonorAppointment, Donor
+from user.models import DonorAppointment, Donor, ReqCampaign
 from datetime import datetime
 
 
@@ -70,6 +70,7 @@ def donor_requests(request):
     return render(request, 'dep_donor_requests.html', locals())
 
 
+# View Donor Appointment Requests and take action
 def donor_details(request,pid):
     if not request.user.is_authenticated:
         return redirect('dep_login')
@@ -98,11 +99,56 @@ def scheduled_appointments(request):
 
 
 
+# Department Can Request Fundraisers to Admin
 def create_fundraiser(request):
     if not request.user.is_authenticated:
         return redirect('dep_login')
-    appointment = DonorAppointment.objects.filter(status="approved")
+    user = request.user
+    department = Department.objects.get(user=user)
+    if request.method=="POST":
+        pfname = request.POST.get('patientfname')
+        plname = request.POST.get('patientlname')
+        page = request.POST.get('patientage')
+        pplace = request.POST.get('patientplace')
+        ppin = request.POST.get('patientpin')
+        pmob = request.POST.get('patientmob')
+        pamount = request.POST.get('patientamount')
+        pdescription = request.POST.get('patientdescription')
+        phospital = request.POST.get('patienthospital')
+        prwithpatient = request.POST.get('userrelationwithpatient')
+        pdocumentpic = request.FILES.get('patientmedicaldocpic')
+        ppic = request.FILES.get('patientpic')
+        try:
+            ReqCampaign.objects.create(user=department, fname=pfname, lname=plname, age=page, place=pplace, pin=ppin, mob=pmob, amount=pamount, description=pdescription, hospital=phospital, rwithpatient=prwithpatient, documentpic=pdocumentpic, patientpic=ppic, status="pending")
+            error="no"
+        except:
+            error="yes"
     return render(request, 'dep_create_fundraiser.html', locals())
+
+
+# View Fundraiser Requests from user
+def view_fundraiser(request):
+    fundraiser = ReqCampaign.objects.filter(status = "pending")
+    return render(request, 'dep_view_fundraisers.html', locals())
+
+
+# Verify and set department remark for fundraiser requested by user
+def verify_fundraiser(request,pid):
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    fundraiser = ReqCampaign.objects.get(id=pid)
+    if request.method == "POST":
+        status = request.POST.get('fundraiserstatus')
+        depremark = request.POST.get('departmentremark')
+        try:
+            fundraiser.departmentremark = depremark
+            fundraiser.status = status
+            fundraiser.updationdate = datetime.now()
+            fundraiser.save()
+            error = "no"
+        except:
+            error = "yes"
+    return render(request, 'dep_verify_fundraiser.html', locals())
 
 
 def dep_dashboard(request):

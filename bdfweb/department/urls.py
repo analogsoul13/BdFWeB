@@ -13,6 +13,8 @@ urlpatterns = [
     path('view_donor_details/<int:pid>', views.donor_details, name='donor_details'),
     path('scheduled_appointments/', views.scheduled_appointments, name='scheduled_appointments'),
     path('create_fundraiser/', views.create_fundraiser, name='create_fundraiser'),
+    path('view_fundraiser/', views.view_fundraiser, name='view_fundraiser'),
+    path('verify_fundraiser/<int:pid>', views.verify_fundraiser, name='verify_fundraiser'),
     path('logout/', views.Logout, name='dep_logout'),
 
     
