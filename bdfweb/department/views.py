@@ -115,11 +115,10 @@ def create_fundraiser(request):
         pamount = request.POST.get('patientamount')
         pdescription = request.POST.get('patientdescription')
         phospital = request.POST.get('patienthospital')
-        prwithpatient = request.POST.get('userrelationwithpatient')
         pdocumentpic = request.FILES.get('patientmedicaldocpic')
         ppic = request.FILES.get('patientpic')
         try:
-            ReqCampaign.objects.create(user=department, fname=pfname, lname=plname, age=page, place=pplace, pin=ppin, mob=pmob, amount=pamount, description=pdescription, hospital=phospital, rwithpatient=prwithpatient, documentpic=pdocumentpic, patientpic=ppic, status="pending")
+            ReqCampaign.objects.create(user=department, fname=pfname, lname=plname, age=page, place=pplace, pin=ppin, mob=pmob, amount=pamount, description=pdescription, hospital=phospital, documentpic=pdocumentpic, patientpic=ppic, status="pending")
             error="no"
         except:
             error="yes"

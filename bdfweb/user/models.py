@@ -85,12 +85,13 @@ class ReqCampaign (models.Model):
     amount = models.CharField(max_length=10)
     description = models.CharField(max_length=200)
     hospital = models.CharField(max_length=100)
-    rwithpatient = models.CharField(max_length=10)
+    rwithpatient = models.CharField(max_length=10, null=True)
     documentpic = models.FileField(null=True)
     patientpic = models.FileField(null=True)
     status = models.CharField(max_length=40, null=True)
     date = models.DateTimeField(auto_now_add=True)
     departmentremark = models.CharField(max_length=300, null=True)
+    adminremark = models.CharField(max_length=300, null=True)
     updationdate = models.DateField(null=True)
 
     def __str__(self):
