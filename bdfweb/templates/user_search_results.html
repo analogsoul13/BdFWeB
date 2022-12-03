@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'user_base.html' %}
 
 {% block title %} 
     Nearest Blood Banks 
@@ -32,14 +32,12 @@
             </div>
           </div>
           {% empty %}
-
-          <div class="flex justify-center">
-            <p class="text-3xl font-poppins items-center">No Results Available !</p>
-          </div>
+          <p class="text-3xl font-poppins">No Results Available !</p>
           {% endfor %}
-        </div>      
-
+        </div>
     </div>
+
+
 </div>
 
 

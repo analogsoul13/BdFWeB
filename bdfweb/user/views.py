@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from department.models import Department
+from django.db.models import Q
 
 
 
@@ -66,6 +67,19 @@ def user_home(request):
     if not request.user.is_authenticated:
         return redirect('register')
     return render(request, 'user_home.html')
+
+
+# user search function
+def user_search(request):
+    if not request.user.is_authenticated:
+        return redirect('register')
+    searchpin = request.GET.get("search")
+    try:
+        department = Department.objects.filter(Q(deppin=searchpin) & Q(status="approved"))
+        error = "no"
+    except:
+        error = "yes"
+    return render(request, 'user_search_results.html', locals())
 
 
 # donate blood after user logged in
