@@ -4332,14 +4332,14 @@ textarea.form-control.is-invalid {
 .w-44 {
   width: 11rem;
 }
+.w-24 {
+  width: 6rem;
+}
 .w-9 {
   width: 2.25rem;
 }
 .w-56 {
   width: 14rem;
-}
-.w-24 {
-  width: 6rem;
 }
 .w-16 {
   width: 4rem;
@@ -4820,10 +4820,6 @@ textarea.form-control.is-invalid {
 .bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-.bg-darkBlue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 .bg-gray-200 {
   --tw-bg-opacity: 1;
@@ -5861,11 +5857,6 @@ body{
   .md\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
-  }
-
-  .md\:mx-auto {
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .md\:ml-6 {
