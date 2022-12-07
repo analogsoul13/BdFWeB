@@ -2,3 +2,8 @@ db.sqlite3
 media
 node_modules
 tw-elements
+__pycache__/
+*.py[cod]
+
+# Django
+*.log
