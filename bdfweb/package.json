@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "postcss static/css/main.css -o static/css/main.min.css",
-    "watch": "postcss static/css/main.css -o static/css/main.min.css --watch"
+    "watch": "postcss static/css/main.css -o static/css/main.min.css --watch",
+    "start": "vite"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
