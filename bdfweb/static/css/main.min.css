@@ -724,6 +724,9 @@ video {
   filter: none;
   opacity: 0.65;
 }
+.form-floating {
+  position: relative;
+}
 .form-floating > .form-control {
   height: calc(3.5rem + 2px);
   line-height: 1.25;
@@ -732,6 +735,17 @@ video {
 .form-floating > .form-select {
   height: calc(3.5rem + 2px);
   line-height: 1.25;
+}
+.form-floating > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
 .form-floating > .form-control::-moz-placeholder {
   color: transparent;
@@ -4029,6 +4043,9 @@ textarea.form-control.is-invalid {
 .float-left {
   float: left;
 }
+.float-none {
+  float: none;
+}
 .m-4 {
   margin: 1rem;
 }
@@ -5814,6 +5831,10 @@ body{
     margin-right: 0.75rem;
   }
 
+  .sm\:hidden {
+    display: none;
+  }
+
   .sm\:w-auto {
     width: auto;
   }
@@ -5849,6 +5870,98 @@ body{
 }
 
 @media (min-width: 786px) {
+
+  .md\:form-floating {
+    position: relative;
+  }
+
+  .md\:form-floating > .form-control {
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+    padding: 1rem 0.75rem;
+  }
+
+  .md\:form-floating > .form-select {
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+  }
+
+  .md\:form-floating > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem 0.75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  }
+
+  .md\:form-floating > .form-control::-moz-placeholder {
+    color: transparent;
+  }
+
+  .md\:form-floating > .form-control::placeholder {
+    color: transparent;
+  }
+
+  .md\:form-floating > .form-control:focus {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .md\:form-floating > .form-control:not(:-moz-placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .md\:form-floating > .form-control:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .md\:form-floating > .form-control:-webkit-autofill {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .md\:form-floating > .form-control:focus ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  }
+
+  .md\:form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  }
+
+  .md\:form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  }
+
+  .md\:form-floating > .form-select ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+     {
+      transition: none;
+    }
+
+    .md\:form-floating > label {
+      transition: none;
+    }
+
+     {
+      transition: none;
+      -webkit-animation-duration: 1.5s;
+      animation-duration: 1.5s;
+    }
+  }
 
   .md\:m-2 {
     margin: 0.5rem;

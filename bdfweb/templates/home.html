@@ -10,34 +10,44 @@ Welcome
 <section id="hero">
     <!-- Flex Container -->
     <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-16 space-y-0 md:space-y-0 md:flex-row">
+
         <!-- Left item -->
         <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
             <h1 class="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">Bring Everyone together to build better world</h1>
+
+                <!-- Searchbar on Mobile Screen -->
+            <div class="flex pt-4 sm:pt-2 md:hidden">  
+                <form method="get" role="form" action="{% url 'search' %}" name="search" class="relative p-2 rounded-full text-black mx-auto">
+                    <input type="numeric" placeholder="PIN" name="search" class="appearance-none h-14 w-36 md:w-32 lg:w-80 rounded-l-full shadow-lg  shadow-zinc-400 outline-none md:text-xl px-6" required pattern="[0-9]{6}">
+                    <button type="submit" class="h-14 w-24 bg-brightRed rounded-r-full md:text-xl shadow-lg font-thin text-white shadow-zinc-400">Search</button>
+                </form>
+            </div>
+
             <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
                 Enter the PIN code of your location ,it will automatically show you the available bloodbanks and hospitals.
             </p>
 
-            <div class="flext justify-center md:justify-start">
+            <div class="flex justify-start md:justify-start md:hidden">
                 <a href="{% url 'register' %}"
-                class="md:hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight">
-                <button class="px-2 py-2.5 text-white font-medium text-xs leading-tight uppercase">Register / Sign In</button></a> 
+                class="text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight">
+                <button class="p-4 text-white font-medium text-xs leading-tight uppercase">Register / Sign In</button></a> 
         
 
             </div>
 
-            <div class="flext justify-center md:justify-start">
+            <div class="flex justify-start md:justify-start">
                 <a href="{% url 'donate' %}"
-                class="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight">
-                <button class="inline-block px-2 py-2.5 text-white font-medium text-xs leading-tight uppercase">Donate</button></a> 
+                class="text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight">
+                <button class="inline-block p-4 text-white font-medium text-xs leading-tight uppercase">Donate</button></a> 
         
 
             </div>
             
         </div>
         <!-- Searchbar -->
-        <div class="flex-col pt-14 md:w-1/2 sm:pt-2 md-block">  
+        <div class="hidden flex-col pt-14 md:w-1/2 sm:pt-2 md:flex md-block">  
             <form method="get" role="form" action="{% url 'search' %}" name="search" class="relative  p-2 rounded-full text-black mx-auto">
-                <input type="numeric" placeholder="PIN" name="search" class="appearance-none h-14 w-56 md:w-32 lg:w-80 rounded-l-full shadow-lg  shadow-zinc-400 outline-none md:text-xl px-6" required pattern="[0-9]{6}">
+                <input type="numeric" placeholder="PIN" name="search" class="appearance-none h-14 w-36 md:w-32 lg:w-80 rounded-l-full shadow-lg  shadow-zinc-400 outline-none md:text-xl px-6" required pattern="[0-9]{6}">
                 <button type="submit" class="h-14 w-24 bg-brightRed rounded-r-full md:text-xl shadow-lg font-thin text-white shadow-zinc-400">Search</button>
             </form>
         </div>
