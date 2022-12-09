@@ -9,6 +9,9 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-white m-0 bg-[url('../img/bg-tablet-pattern.svg')] bg-[length:800px_800px]">
@@ -174,7 +177,7 @@
 
              <!-- Mobile Menu -->
              <div class="md:hidden">
-                <div id="menu" class="transition-all duration-200 ease-in absolute hidden flex-col items-center self-end py-8 mt-10 rounded-md space-y-6 font-semibold text-gray-800 bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+                <div id="menu" class="transition-all duration-200 ease-in absolute hidden flex-col items-center self-end py-8 mt-10 rounded-md space-y-6 font-poppins text-gray-800 bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
                     <a href="{% url 'user_home' %}">Home</a>
                     <a href="{% url 'blood_banks' %}">Blood Banks</a>
                     <a href="{% url 'donate_blood' %}">Donate Blood</a>
