@@ -63,6 +63,7 @@ class DonorAppointment (models.Model):
     pin = models.CharField(max_length=6)
     mob = models.CharField(max_length=15, null=True)
     bloodgroup = models.CharField(max_length=10)
+    bloodbank = models.CharField(max_length=100, default='')
     appointmentdate = models.DateField( max_length=10)
     regulardonor = models.CharField(max_length=6)
     status = models.CharField(max_length=40, null=True)
