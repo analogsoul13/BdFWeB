@@ -170,8 +170,11 @@ def be_a_donor(request):
 def make_appointment(request):
     if not request.user.is_authenticated:
         return redirect('register')
+    searchpin = request.GET.get("search")
+    department = Department.objects.filter(Q(deppin=searchpin) & Q(status="approved"))
     user = request.user
     donor = Donor.objects.get(user=user)
+    pin = {'searchpin' : searchpin}
     if request.method=="POST":
         dfname = request.POST.get('donorfname')
         dlname = request.POST.get('donorlname')
@@ -180,23 +183,26 @@ def make_appointment(request):
         dpin = request.POST.get('donorpin')
         dmob = request.POST.get('donormob')
         dbloodgroup = request.POST.get('donorbloodgroup')
+        dbloodbank = request.POST.get('donorbloodbank')
         dappointmentdate = request.POST.get('donorappointmentdate')
         rdonor = request.POST.get('regulardonorornot')
         try:
-            DonorAppointment.objects.create(user=donor, fname=dfname, lname=dlname, age=dage, place=dplace, pin=dpin, mob=dmob, bloodgroup=dbloodgroup, appointmentdate=dappointmentdate, regulardonor=rdonor, status="pending")
+            DonorAppointment.objects.create(user=donor, fname=dfname, lname=dlname, age=dage, place=dplace, pin=dpin, mob=dmob, bloodgroup=dbloodgroup, bloodbank=dbloodbank, appointmentdate=dappointmentdate, regulardonor=rdonor, status="pending")
             error = "no"
         except:
             error = "yes"
-    return render(request, 'user_make_appointment.html', locals())
+    return render(request, 'user_make_appointment.html',locals())
 
 
-# View appointments 
+# View appointments - need to display department name to visit
 def view_appointments(request):
     if not request.user.is_authenticated:
         return redirect('register')
     user = request.user
     donor = Donor.objects.get(user=user)
+    #bloodbank = DonorAppointment.objects.get(user=user )
     appointment = DonorAppointment.objects.filter(user=donor)
+    #department = Department.objects.filter(Q(status="approved") & Q(user=donor))
     return render(request, 'user_view_appointments.html', locals())
 
 
