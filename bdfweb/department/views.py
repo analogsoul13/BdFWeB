@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from .models import *
 from user.models import DonorAppointment, Donor, ReqCampaign
 from datetime import datetime
+from django.db.models import Q
 
 
 
@@ -66,7 +67,14 @@ def dep_home(request):
 def donor_requests(request):
     if not request.user.is_authenticated:
         return redirect('dep_login')
-    appointment = DonorAppointment.objects.filter(status="pending")
+    user = request.user
+    department = Department.objects.get(user=user)
+    try:
+        appointment = DonorAppointment.objects.filter(Q(status="pending") & Q(bloodbank=department))
+        error = "no"
+    except:
+        error = "yes"
+          
     return render(request, 'dep_donor_requests.html', locals())
 
 
