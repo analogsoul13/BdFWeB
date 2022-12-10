@@ -82,6 +82,31 @@
                     <option value="abpositive">AB +ve</option>
                     <option value="abnegative">AB -ve</option>
                 </select>
+
+                 <!-- Heading -->
+                 <label for="donorbloodgroup" class="block text-xs font-light text-brightRed mt-4 text-center">Available Blood Banks in {{searchpin}} </label>
+              
+                <!-- Select Blood Bank -->
+                <select name="donorbloodbank" class="form-select appearance-none
+                    mt-2
+                    block
+                    w-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded-sm
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" required>
+                    {% for i in department %}
+                    <option value="{{i.user}}">{{ i.user.first_name }} {{ i.user.last_name }}</option>
+                    {% endfor %}
+                </select>
               
 
                 <!-- Heading -->
