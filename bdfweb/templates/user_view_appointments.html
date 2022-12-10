@@ -16,7 +16,7 @@
             <header class="px-5 py-4 border-b border-gray-100">
                 <div class="font-semibold text-gray-800">Your Appointments</div>
             </header>
-
+            {% for i in appointment %}
             <div class="overflow-x-auto p-3">
                 <table class="table-auto w-full">
                     <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
@@ -36,7 +36,7 @@
                             </th>
                         </tr>
                     </thead>
-                {% for i in appointment %}
+                
                     <tbody class="text-sm divide-y divide-gray-100">
                         
                         <!-- record 1 -->
@@ -115,17 +115,21 @@
 
                         
                     </tbody>
-                {% endfor %}
+                
                 </table>
             </div>
 
             <!-- Actions -->
             <div class="flex justify-end font-bold  space-x-4 text-sm border-t bg-brightRed border-gray-100 px-5 py-4">
+                <p>{{department.user.first_name}}</p>
                 <button class="bg-white rounded-lg p-2 ">ReSchedule</button>
             </div>
-
+            {% endfor %}
         </div>
+       
+        
     </div>
+    
 
 
 
