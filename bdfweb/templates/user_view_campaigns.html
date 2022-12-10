@@ -18,6 +18,7 @@
             </header>
 
             <div class="overflow-x-auto p-3">
+                {% for i in campaigns %}
                 <table class="table-auto w-full">
                     <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                         <tr>
@@ -42,7 +43,7 @@
                             </th>
                         </tr>
                     </thead>
-                {% for i in campaigns %}
+                
                     <tbody class="text-sm divide-y divide-gray-100">
                         
                         <!-- record 1 -->
@@ -150,9 +151,14 @@
 
 
                         
-                    </tbody>
-                {% endfor %}
+                    </tbody>               
                 </table>
+                {% empty %}
+                <div>
+                    <p class="text-md font-poppins">Not Requested Any Campaigns</p>
+                </div>
+                {% endfor %}
+
             </div>
 
             <!-- Actions -->
