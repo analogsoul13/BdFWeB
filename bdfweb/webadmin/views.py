@@ -151,6 +151,14 @@ def fundraising_requests(request):
     return render(request, 'admin_fundraising_requests.html', locals())
 
 
+# View Deatils of fundraising requests
+def view_fundraising_details(request,pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    fundraiser = ReqCampaign.objects.get(id=pid)
+    return render(request, 'admin_view_fundraising_details.html', locals())
+
+
 # Admin logout
 def Logout(request):
     logout(request)
