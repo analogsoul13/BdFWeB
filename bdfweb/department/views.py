@@ -38,6 +38,7 @@ def dep_register(request):
     if request.method=='POST':
         dfname = request.POST.get('depfname')
         dlname = request.POST.get('deplname')
+        dname = dfname + dlname
         dmob = request.POST.get('depmob')       
         dpin = request.POST.get('deppin')
         demail = request.POST.get('depmail')
@@ -49,7 +50,7 @@ def dep_register(request):
 
         try:
             user = User.objects.create_user(first_name=dfname, last_name=dlname, username=demail, password=dpass)
-            Department.objects.create(user=user, contact=dmob, address=daddress, deppic=dpic, deppin=dpin, depidpic=did, aboutdep=dabout, status="pending")
+            Department.objects.create(user=user, depname=dname, contact=dmob, address=daddress, deppic=dpic, deppin=dpin, depidpic=did, aboutdep=dabout, status="pending")
             error="no"
 
         except:
@@ -64,6 +65,7 @@ def dep_home(request):
     return render(request, 'dep_home.html')
 
 
+# display donor requests made to the corresponding department
 def donor_requests(request):
     if not request.user.is_authenticated:
         return redirect('dep_login')
