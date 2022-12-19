@@ -10,15 +10,15 @@
  <!-- Profile Details-->
  {% load static %}
 
- <div class="flex md:w-full md:max-h-full justify-center">
-  <div class="md:w-24 h-full items-center">
-    <img src="{{ request.user.donor_set.all.0.userpic.url }}" alt="User Avatar" class="rounded-full w-24">
+ <div class="flex flex-col md:w-full md:max-h-full justify-center">
+  <div class="flex flex-col w-full h-full justify-center items-center">
+    <img src="{{ request.user.donor_set.all.0.userpic.url }}" alt="User Avatar" class="rounded-full w-52 shadow-xl">
     <label for="userpic" class="block mb-2 mt-2 text-xs text-brightRed text-center">Change Profile Pic</label>
                   <input type="file"
                   name="userpic"
                   class="form-control text-sm mt-2
                   block
-                  w-full
+                  w-24
                   px-3
                   py-1
                   font-normal
@@ -30,9 +30,9 @@
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-
-                  
+              
   </div>
+
   <!-- Form -->
   <form method="post" enctype="multipart/form-data" class="px-8 py-6" role="form" name="usersignup" onsubmit="return checkuserpass()">
     {% csrf_token %}
