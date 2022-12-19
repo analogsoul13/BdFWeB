@@ -20,6 +20,7 @@ urlpatterns = [
     path('view_department_details/<int:pid>', views.dep_details, name='dep_details'),
     path('delete_department/<int:pid>', views.delete_dep, name='delete_dep'),
     path('fundraising_requests/', views.fundraising_requests, name='fundraising_requests'),
+    path('approved_fundraising_requests/', views.approved_fundraising_requests, name='approved_fundraising_requests'),
     path('fundraising_details/<int:pid>', views.view_fundraising_details, name='view_fundraising_details'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
