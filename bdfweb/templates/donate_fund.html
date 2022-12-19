@@ -17,20 +17,22 @@
   <!-- grid container -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-14">
       <!--card 1 -->
+      {% for i in fundraisers %}
       <a href="{% url 'contribute' %}"
           class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/181.jpg" alt="Campaign Image"
+          <img src="{{i.patientpic.url}}" alt="Campaign Image"
               class="h-48 object-cover rounded-tl-md rounded-tr-md">
 
           <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">₹46002 raised of ₹150000</p>
+              <h1 class=" text-brightRed font-semibold">{{i.fname}} {{i.lname}}</h1>
+              <p class="text-darkGrayishBlue text-xs mt-1">Age : {{i.age}}</p>
+              <p class="text-lg">₹46002 raised of ₹{{i.amount}}</p>
               <!-- Progress Bar -->
               <div class="w-full bg-gray-200 h-1">
                 <div class="bg-brightRedLight h-1" style="width: 45%"></div>
               </div>              
-              <p class="text-darkGrayishBlue text-xs mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
+              <p class="text-darkGrayishBlue text-xs mt-3">{{i.description}}</p>
+              <p class="text-md">{{i.place}}, {{i.pin}} - {{i.updationdate}}</p>
               <div class="flex flex-row justify-between">
                   <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-brightRedSupLight focus:shadow-lg focus:outline-none focus:ring-0 active:bg-brightRedSupLight active:shadow-lg transition duration-150 ease-in-out">Donate</button>
                           <!-- Share Button -->
@@ -38,106 +40,7 @@
               </div>
           </div>
       </a>
-      <!-- card 2 -->
-      <a href="{% url 'contribute' %}"
-          class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt="Campaign Image"
-              class="h-48 object-cover rounded-tl-md rounded-tr-md">
-
-          <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">₹69069 raised of ₹100000</p>
-              <!-- Progress Bar -->
-              <div class="w-full bg-gray-200 h-1">
-                <div class="bg-brightRedLight h-1" style="width: 90%"></div>
-              </div>
-              <p class="text-darkGrayishBlue text-xs mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
-              <div class="flex flex-row justify-between">
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-brightRedSupLight focus:shadow-lg focus:outline-none focus:ring-0 active:bg-brightRedSupLight active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-                          <!-- Share Button -->
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
-              </div>
-          </div>
-      </a>
-      <!-- card 3-->
-      <a href="{% url 'contribute' %}"
-          class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/183.jpg" alt="Campaign Image"
-              class="h-48 object-cover rounded-tl-md rounded-tr-md">
-
-          <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">₹75000 raised of ₹100000</p>
-              <!-- Progress Bar -->
-              <div class="w-full bg-gray-200 h-1">
-                <div class="bg-brightRedLight h-1" style="width: 45%"></div>
-              </div>     
-              <p class="text-darkGrayishBlue text-xs mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
-              <div class="flex flex-row justify-between">
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-                          <!-- Share Button -->
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
-              </div>
-          </div>
-      </a>
-      <!-- card 4-->
-      <a href="{% url 'contribute' %}"
-          class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="Campaign Image"
-              class="h-48 object-cover rounded-tl-md rounded-tr-md">
-
-          <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">$69.69 raised of $10000</p>
-              <p class="text-darkGrayishBlue text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
-              <div class="flex flex-row justify-between">
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-                          <!-- Share Button -->
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
-              </div>
-          </div>
-      </a>
-      <!-- card 5 -->
-      <a href="{% url 'contribute' %}"
-          class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/185.jpg" alt="Campaign Image"
-              class="h-48 object-cover rounded-tl-md rounded-tr-md">
-
-          <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">$69.69 raised of $10000</p>
-              <p class="text-darkGrayishBlue text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
-              <div class="flex flex-row justify-between">
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-                          <!-- Share Button -->
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
-              </div>
-          </div>
-      </a>
-      <!-- card 6 -->
-      <a href="{% url 'contribute' %}"
-          class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
-          <img src=" https://mdbootstrap.com/img/new/standard/nature/186.jpg" alt="Campaign Image"
-              class="h-48 object-cover rounded-tl-md rounded-tr-md">
-
-          <div class="px-3 py-2">
-              <h1 class=" text-brightRed font-semibold">Campaign Title</h1>
-              <p class="text-lg">$69.69 raised of $10000</p>
-              <p class="text-darkGrayishBlue text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, facere?</p>
-              <p class="text-md">Days Left : 14</p>
-              <div class="flex flex-row justify-between">
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:none focus:shadow-lg focus:outline-none focus:ring-0 active:none active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-                          <!-- Share Button -->
-                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
-              </div>
-          </div>
-      </a>
-
-
+      {% endfor %}
   </div>
 </div> 
 
