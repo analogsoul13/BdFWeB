@@ -41,7 +41,7 @@ def dep_register(request):
         dname = dfname + dlname
         dmob = request.POST.get('depmob')       
         dpin = request.POST.get('deppin')
-        demail = request.POST.get('depmail')
+        demail = request.POST.get('depmail')    
         daddress = request.POST.get('depaddress')
         dpass = request.POST.get('pass')
         dpic = request.FILES.get('deppic')
@@ -109,7 +109,7 @@ def scheduled_appointments(request):
 
 
 
-# Department Can Request Fundraisers to Admin
+# Department Can Request Fundraisers to Admin -NOT UPDATED THE CODE
 def create_fundraiser(request):
     if not request.user.is_authenticated:
         return redirect('dep_login')
@@ -137,7 +137,10 @@ def create_fundraiser(request):
 
 # View Fundraiser Requests from user
 def view_fundraiser(request):
-    fundraiser = ReqCampaign.objects.filter(status = "pending")
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    dep = request.user
+    fundraiser = ReqCampaign.objects.filter(Q(selecteddepartment=dep) & Q(status="approved"))
     return render(request, 'dep_view_fundraisers.html', locals())
 
 
@@ -147,11 +150,11 @@ def verify_fundraiser(request,pid):
         return redirect('dep_login')
     fundraiser = ReqCampaign.objects.get(id=pid)
     if request.method == "POST":
-        status = request.POST.get('fundraiserstatus')
+        status = request.POST.get('departmentstatus')
         depremark = request.POST.get('departmentremark')
         try:
             fundraiser.departmentremark = depremark
-            fundraiser.status = status
+            fundraiser.depstatus = status
             fundraiser.updationdate = datetime.now()
             fundraiser.save()
             error = "no"
