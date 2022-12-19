@@ -97,7 +97,8 @@ def donate_blood(request):
 def help_fundraising(request):
     if not request.user.is_authenticated:
         return redirect('register')
-    return render(request, 'user_donate_fund.html')
+    fundraisers = ReqCampaign.objects.filter(Q(status="approved") & Q(depstatus="approved"))
+    return render(request, 'user_donate_fund.html', locals())
 
 
 # bloodbanks display page after user logged in
@@ -210,6 +211,12 @@ def view_appointments(request):
 def request_campaign(request):
     if not request.user.is_authenticated:
         return redirect('register')
+    if 'term' in request.GET:
+        qs = Department.objects.filter(depname__icontains=request.GET.get('term'))
+        departments = list()
+        for department in qs:
+            departments.append(Department.depname)
+        return JsonResponse(departments, safe=False)
     user = request.user
     donor = Donor.objects.get(user=user)
     if request.method=="POST":
@@ -231,16 +238,6 @@ def request_campaign(request):
         except:
             error="yes"
     return render(request, 'user_request_campaign.html')
-
-
-# auto suggest hospital
-def autosuggest(request):
-    print(request.GET)
-    query_original = request.GET.get('term')
-    queryset = Department.objects.filter(depname__icontains=query_original)
-    mylist= []
-    mylist += [x.depname for x in queryset]
-    return JsonResponse(mylist,safe=False)
     
 
 # Display campaigns requested by user
