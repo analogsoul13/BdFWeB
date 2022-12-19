@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from user.models import ReqBlood
+from user.models import ReqCampaign
 from user.models import User
 from department.models import Department
 from django.db.models import Q
@@ -19,7 +20,8 @@ def blood_banks(request):
     return render(request, 'blood_banks.html', locals())
 
 def donate(request):
-    return render(request, 'donate_fund.html')
+    fundraisers = ReqCampaign.objects.filter(Q(status="approved") & Q(depstatus="approved"))
+    return render(request, 'donate_fund.html', locals())
 
 def guest_donate_blood(request):
     reqblood = ReqBlood.objects.all
