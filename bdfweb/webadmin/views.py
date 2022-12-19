@@ -147,8 +147,16 @@ def delete_dep(request,pid):
 def fundraising_requests(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')
-    fund_requests = ReqCampaign.objects.all()
+    fund_requests = ReqCampaign.objects.filter(status="pending")
     return render(request, 'admin_fundraising_requests.html', locals())
+
+
+# Dosplay all admin verified fundraising requests that are assigned to corresponding department
+def approved_fundraising_requests(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    fundraisers = ReqCampaign.objects.filter(status="approved")
+    return render(request, 'admin_approved_fundraising_requests.html', locals())
 
 
 # View Deatils of fundraising requests
@@ -156,6 +164,19 @@ def view_fundraising_details(request,pid):
     if not request.user.is_authenticated:
         return redirect('admin_login')
     fundraiser = ReqCampaign.objects.get(id=pid)
+    department = Department.objects.filter(status="approved")
+    if request.method == "POST":
+        status = request.POST.get('fundraiserstatus')
+        selecteddep = request.POST.get('selecteddepartment')
+        adminremark = request.POST.get('adminremark')
+        try:
+            fundraiser.status = status
+            fundraiser.selecteddepartment = selecteddep
+            fundraiser.adminremark = adminremark
+            fundraiser.save()
+            error = "no"
+        except:
+            error = "yes"
     return render(request, 'admin_view_fundraising_details.html', locals())
 
 
