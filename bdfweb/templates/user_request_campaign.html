@@ -60,10 +60,12 @@ Request A Campaign
                   <!-- Description field -->
                 <input type="text" placeholder="Description" name="patientdescription" class="text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
 
+                <!-- Heading -->
+                <label for="patienthospital" class="block text-xs font-light text-brightRed mt-4 text-center">Hospital</label>
                   <!-- Hospital -->
-                <div class="autocomplete w-full h-full">
-                    <input type="text" placeholder="Hospital Name" name="patienthospital" id="tags" class="autocomplete-input text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
-                    <ul class="autocomplete-result-list"></ul>
+                <div class="w-full h-full">
+                    <input type="text" placeholder="Hospital Name" name="patienthospital" id="patienthospital" class="text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+                    <!-- <ul class="autocomplete-result-list"></ul> -->
                 </div>
 
                  
@@ -148,23 +150,7 @@ Request A Campaign
 
 </div>
 
-<!-- Jquery Script -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<!-- Auto complete -->
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
-<script>
-
-$( function() {
-    
-
-    $( "#tags" ).autocomplete({
-    source: "{% url 'request_campaign'  %}"
-    });
-
-  } );
-
-</script>
+<!-- AutoComplete Source -->
 
 
 <!-- Error Message -->
