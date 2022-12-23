@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from .models import *
 from department.models import Department
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 
@@ -106,6 +107,12 @@ def user_bloodbanks(request):
     if not request.user.is_authenticated:
         return redirect('register')
     department = Department.objects.filter(status="approved")
+    paginator = Paginator(department,6)
+    page_number = request.GET.get('page')
+    departmentfinaldata = paginator.get_page(page_number)
+    totalpage = departmentfinaldata.paginator.num_pages
+    totalPagelist = [n+1 for n in range(totalpage)]
+
     return render(request, 'user_blood_banks.html', locals())
 
 
