@@ -10,7 +10,7 @@
 
 
 
-    <div class="flex flex-col justify-center h-full ">
+    <div class="flex flex-col justify-center h-full mt-3 ">
         <!-- Table -->
         <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
@@ -121,11 +121,18 @@
 
             <!-- Actions -->
             <div class="flex justify-end font-bold  space-x-4 text-sm border-t bg-brightRed border-gray-100 px-5 py-4">
+                {% if department.user == i.bloodbank %}
                 <p>{{department.user.first_name}}</p>
+                {% endif %}
                 <button class="bg-white rounded-lg p-2 ">ReSchedule</button>
             </div>
-            {% endfor %}
+            {% empty %}
         </div>
+        <div class="flex justify-center">
+            <p class="text-3xl font-poppins mt-10">No Appointments</p>
+        </div>
+        
+        {% endfor %}
        
         
     </div>
