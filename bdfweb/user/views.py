@@ -90,15 +90,25 @@ def donate_blood(request):
     user = request.user
     donor = Donor.objects.get(user=user)
     reqblood = ReqBlood.objects.all()
+    paginator = Paginator(reqblood,6)
+    page_number = request.GET.get('page')
+    reqbloodfinaldata = paginator.get_page(page_number)
+    totalpage = reqbloodfinaldata.paginator.num_pages
+    totalPagelist = [n+1 for n in range(totalpage)]
     return render(request, 'user_donate_blood.html',locals())
 
 
 
-# help fundraising after user logged in
+# help fundraising after user logged in + Pagination
 def help_fundraising(request):
     if not request.user.is_authenticated:
         return redirect('register')
     fundraisers = ReqCampaign.objects.filter(Q(status="approved") & Q(depstatus="approved"))
+    paginator = Paginator(fundraisers,3)
+    page_number = request.GET.get('page')
+    fundraiserfinaldata = paginator.get_page(page_number)
+    totalpage = fundraiserfinaldata.paginator.num_pages
+    totalPagelist = [n+1 for n in range(totalpage)]
     return render(request, 'user_donate_fund.html', locals())
 
 

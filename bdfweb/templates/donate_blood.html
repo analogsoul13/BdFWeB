@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="flex justify-center">
-  <p class="text-brightRed">Only Verified Blood Donors can Accept Requests</p>
-  <a href="" class="text-blue-600 ml-4 hover:text-blue-500">Learn More</a>
+<div class="flex flex-col justify-center">
+  <p class="text-brightRed flex justify-center">Only Verified Blood Donors can Accept Requests</p>
+  <a href="" class="text-blue-600 flex ml-4 hover:text-blue-500 justify-center">Learn More</a>
 
 </div>
 
@@ -17,7 +17,7 @@
     <!-- grid container -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
         <!-- Card -->
-        {% for i in reqblood %}
+        {% for i in reqbloodfinaldata %}
         <div class="flex justify-center">
             <div class="block rounded-lg shadow-xl bg-white w-full text-center">
 
@@ -60,5 +60,34 @@
 
     </div>
 </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-center h-32">
+    <nav aria-label="Page navigation example">
+      <ul class="flex list-style-none">
+        {% if reqbloodfinaldata.has_previous %}
+        <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="/urgently_needed/?page={{fundraiserfinaldata.previous_page_number}}">Previous</a></li>
+        {% endif %}
+
+        {% for n in totalPagelist %}
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-50 hover:bg-brightRed focus:shadow-md"
+            href="/urgently_needed/?page={{n}}">{{n}}<span class="visually-hidden">(current)</span></a></li>
+        {% endfor %}
+        
+        {% if reqbloodfinaldata.has_next %}
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+            href="/urgently_needed/?page={{totalpage}}">Last</a></li>
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+            href="/urgently_needed/?page={{fundraiserfinaldata.next_page_number}}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
 
 {% endblock %}
