@@ -211,6 +211,31 @@ def make_appointment(request):
             error = "yes"
     return render(request, 'user_make_appointment.html',locals())
 
+# User Reqesting an appointment ffrom bloodbanks page
+def request_appointment(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('register')
+    department = Department.objects.get(id=pid)
+    user = request.user
+    donor = Donor.objects.get(user=user)
+    if request.method=="POST":
+        dfname = request.POST.get('donorfname')
+        dlname = request.POST.get('donorlname')
+        dage = request.POST.get('donorage')
+        dplace = request.POST.get('donorplace')
+        dpin = request.POST.get('donorpin')
+        dmob = request.POST.get('donormob')
+        dbloodgroup = request.POST.get('donorbloodgroup')
+        dbloodbank = request.POST.get('donorbloodbank')
+        dappointmentdate = request.POST.get('donorappointmentdate')
+        rdonor = request.POST.get('regulardonorornot')
+        try:
+            DonorAppointment.objects.create(user=donor, fname=dfname, lname=dlname, age=dage, place=dplace, pin=dpin, mob=dmob, bloodgroup=dbloodgroup, bloodbank=dbloodbank, appointmentdate=dappointmentdate, regulardonor=rdonor, status="pending")
+            error = "no"
+        except:
+            error = "yes"
+    return render(request, 'user_request_appointment.html',locals())
+
 
 # View appointments - need to display department name to visit
 def view_appointments(request):
