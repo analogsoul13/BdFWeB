@@ -21,6 +21,7 @@ urlpatterns = [
     path('user_post_details/', views.post_details, name='post_details'),
     path('be_a_donor/', views.be_a_donor, name='be_a_donor'),
     path('make_appointment/', views.make_appointment, name='make_appointment'),
+    path('request_appointment/<int:pid>', views.request_appointment, name='request_appointment'),
     path('view_appointments/', views.view_appointments, name='view_appointments'),
     path('request_a_campaign/', views.request_campaign, name='request_campaign'),
     path('view_campaigns/', views.view_campaigns, name='view_campaigns'),
