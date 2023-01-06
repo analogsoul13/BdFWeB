@@ -173,9 +173,33 @@ def post_details(request):
     return render(request, 'user_post_details.html',locals())
 
 
-# user profile page
+# user profile page and edit details
 def user_profile(request):
-    return render(request, 'user_profile.html')
+    if not request.user.is_authenticated:
+        return redirect('register')
+    error = ""  # for alert
+    user = request.user
+    donor = Donor.objects.get(user=user)
+    if request.method == "POST":
+        fname = request.POST.get('firstname')
+        lname = request.POST.get('lastname')
+        uage = request.POST.get('userage')
+        uplace = request.POST.get('userplace')
+        upin = request.POST.get('userpincode')
+        umob = request.POST.get('usermob')
+        umail = request.POST.get('usermail')
+        pwd = request.POST.get('userpass')
+        ubgroup = request.POST.get('userbloodgroup')
+        upic = request.FILES.get('userpic')
+         
+        try:
+            user = User.objects.create_user(first_name=fname, last_name=lname, username=umail, password=pwd )
+            Donor.objects.create(user=user, contact=umob, place=uplace, userpin=upin, userpic=upic, userbloodgroup=ubgroup, userdob=uage)
+            error="no"
+
+        except:
+            error="yes"
+    return render(request, 'user_profile.html',locals())
 
 # Be A Donor
 def be_a_donor(request):
