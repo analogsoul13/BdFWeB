@@ -112,6 +112,11 @@ def help_fundraising(request):
     return render(request, 'user_donate_fund.html', locals())
 
 
+# User redirected to payment page
+def user_contribute(request):
+    return render(request, 'user_contribute_fund.html')
+
+
 # bloodbanks display page after user logged in
 def user_bloodbanks(request):
     if not request.user.is_authenticated:

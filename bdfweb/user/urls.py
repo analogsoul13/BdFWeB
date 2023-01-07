@@ -16,6 +16,7 @@ urlpatterns = [
     path('logout/', views.Logout, name='logout'),
     path('donate_blood/', views.donate_blood, name='donate_blood'),
     path('help_fundraising/', views.help_fundraising, name='help_fundraising'),
+    path('user_contribute_fund', views.user_contribute, name='user_contribute'),
     path('user_blood_banks/', views.user_bloodbanks, name='user_bloodbanks'),
     path('user_request_blood/', views.user_request_blood, name='user_request_blood'),
     path('user_post_details/', views.post_details, name='post_details'),
