@@ -19,8 +19,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-14">
         <!--card 1 -->
         {% for i in fundraiserfinaldata %}
-        <a href="{% url 'contribute' %}"
-            class="flex flex-col bg-white drop-shadow hover:drop-shadow-lg hover:opacity-90 rounded-md">
+        <div class="flex flex-col bg-white rounded-md">
             <img src="{{i.patientpic.url}}" alt="Campaign Image"
                 class="h-48 object-cover rounded-tl-md rounded-tr-md">
   
@@ -35,12 +34,14 @@
                 <p class="text-darkGrayishBlue text-xs mt-3">{{i.description}}</p>
                 <p class="text-md">{{i.place}}, {{i.pin}} - {{i.updationdate}}</p>
                 <div class="flex flex-row justify-between">
+                  <a href="{% url 'user_contribute' %}">
                     <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-brightRedSupLight focus:shadow-lg focus:outline-none focus:ring-0 active:bg-brightRedSupLight active:shadow-lg transition duration-150 ease-in-out">Donate</button>
+                  </a>
                             <!-- Share Button -->
                     <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
                 </div>
             </div>
-        </a>
+        </div>
         {% endfor %}
     </div>
   </div> 
