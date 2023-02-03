@@ -113,8 +113,11 @@ def help_fundraising(request):
 
 
 # User redirected to payment page
-def user_contribute(request):
-    return render(request, 'user_contribute_fund.html')
+def user_contribute(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('register')
+    fundraiser = ReqCampaign.objects.get(id=pid)
+    return render(request, 'user_contribute_fund.html', locals())
 
 
 # bloodbanks display page after user logged in
