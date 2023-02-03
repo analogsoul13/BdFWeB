@@ -60,7 +60,7 @@ def all_users(request):
 # Display All Verified Regular Donors  
 def verified_donors(request):
     if not request.user.is_authenticated:
-        return redirect('admin_login')
+        return redirect('admin_login') 
     donors = DonorAppointment.objects.all
     return render(request, 'admin_verified_donors.html',locals())
 
