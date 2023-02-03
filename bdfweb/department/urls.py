@@ -10,6 +10,7 @@ urlpatterns = [
     path('dep_dashboard/', views.dep_dashboard, name='dep_dashboard'),
     path('dep_profile/', views.dep_profile, name='dep_profile'),
     path('donor_requests/', views.donor_requests, name='donor_requests'),
+    path('actove_donors/', views.active_donors, name='active_donors'),
     path('view_donor_details/<int:pid>', views.donor_details, name='donor_details'),
     path('scheduled_appointments/', views.scheduled_appointments, name='scheduled_appointments'),
     path('create_fundraiser/', views.create_fundraiser, name='create_fundraiser'),
