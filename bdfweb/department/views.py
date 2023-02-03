@@ -80,6 +80,21 @@ def donor_requests(request):
     return render(request, 'dep_donor_requests.html', locals())
 
 
+# Display currently active donors
+def active_donors(request):
+    if not request.user.is_authenticated:
+        return redirect('dep_login')
+    user = request.user
+    department = Department.objects.get(user=user)
+    try:
+        activedonors = DonorAppointment.objects.filter(Q(status="approved") & Q(bloodbank=department))
+        error = "no"
+    except:
+        error = "yes"
+          
+    return render(request, 'dep_active_donors.html', locals())
+
+
 # View Donor Appointment Requests and take action
 def donor_details(request,pid):
     if not request.user.is_authenticated:
