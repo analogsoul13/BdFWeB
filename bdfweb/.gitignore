@@ -1,6 +1,6 @@
 db.sqlite3
 media
-templates
+/templates/
 node_modules
 __pycache__/
 *.py[cod]
