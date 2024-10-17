@@ -1,0 +1,290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body class="bg-[url('../img/bg-tablet-pattern.svg')] bg-[length:800px_800px]">
+    {% load static %}   
+       <!-- Navbar -->
+   <nav class="relative container mx-auto p-6 items-center ">
+    <!-- Flex Container -->
+    <div class="flex items-center justify-between"> 
+        <!-- Logo -->
+        <div class="hover:shadow-md">
+            <img src="{% static '/img/lgblack.svg' %}" alt="donate logo">
+        </div>
+        <!-- Menu Items -->
+        <div class="hidden space-x-8 md:flex pt-4">
+            <a href="{% url 'home' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed ">Home</a>
+            <a href="{% url 'blood_banks' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed">Blood Banks</a>
+            <!-- DropDown -->
+            <div class="dropdown">
+            <button
+              class="dropdown-toggle px-2
+                text-black
+                font-medium
+                text-md
+                leading-tight 
+                hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed
+                transition
+                duration-150
+                ease-in-out
+                flex
+                items-center
+                whitespace-nowrap
+              "
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Donate
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="caret-down"
+                class="w-2 ml-2"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                ></path>
+              </svg>
+            </button>
+            <ul
+              class="
+                dropdown-menu
+                min-w-max
+                absolute
+                hidden
+                bg-white
+                text-base
+                z-50
+                float-left
+                py-2
+                list-none
+                text-left
+                rounded-lg
+                shadow-lg
+                mt-1
+                m-0
+                bg-clip-padding
+                border-none
+              "
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li>
+                <a
+                  class="
+                    dropdown-item
+                    text-sm
+                    py-2
+                    px-4
+                    font-normal
+                    block
+                    w-full
+                    whitespace-nowrap
+                    bg-transparent
+                    text-gray-700
+                    hover:bg-gray-100
+                  "
+                  href="{% url 'guest_view_posts' %}"
+                  >Donate Blood</a>
+              </li>
+              <li>
+                <a
+                  class="
+                    dropdown-item
+                    text-sm
+                    py-2
+                    px-4
+                    font-normal
+                    block
+                    w-full
+                    whitespace-nowrap
+                    bg-transparent
+                    text-gray-700
+                    hover:bg-gray-100
+                  "
+                  href="{% url 'donate' %}"
+                  >Help Fundraising</a
+                >
+              </li>
+              <li>
+                <a
+                  class="
+                    dropdown-item
+                    text-sm
+                    py-2
+                    px-4
+                    font-normal
+                    block
+                    w-full
+                    whitespace-nowrap
+                    bg-transparent
+                    text-gray-700
+                    hover:bg-gray-100
+                  "
+                  href="{% url 'register' %}"
+                  >Need Blood</a
+                >
+              </li>
+            </ul>
+            </div>
+        
+            <a href="{% url 'register' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed">Dashboard</a>
+            <a href="{% url 'about_us' %}" class="hover:text-darkGrayishBlue active:text-brightRed focus:text-brightRed">About Us</a>
+        </div>
+        <!-- Button -->
+        <a href="{% url 'register' %}"
+        class="hidden px-4 py-2.5 text-white bg-brightRed  rounded-full shadow-md hover:bg-brightRedLight md:block ">
+        <button class="inline-block text-white font-medium text-xs uppercase leading-tight">
+            Sign In / Register
+        </button></a>
+
+        <!-- Hamburger Icon -->
+        <div class="pt-2.5">
+                <button id="menu-btn" class=" block hamburger md:hidden focus-outline-none">
+                    <span class="hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-bottom"></span>
+                </button>
+
+                <!-- Mobile Menu -->
+                <div class="md:hidden ">
+                    <div id="menu" class="absolute float-none hidden rounded-md flex-col items-center self-end py-8 mt-10 space-y-6 font-poppins bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ">
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'blood_banks' %}">Blood Banks</a>
+                        <a href="{% url 'guest_view_posts' %}">Donate Blood</a>
+                        <a href="{% url 'donate' %}">Help Fundraising</a>
+                        <a href="{% url 'register' %}">Dashboard</a>
+                        <a href="{% url 'about_us' %}">About Us</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+   </nav>
+
+
+      
+{% block content %} 
+{% endblock %}
+ <!-- CTA Section -->
+ <section id="cta" class="bg-brightRed shadow-md">
+    <!-- Flex Container -->
+    <div class="contaner flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0">
+        <!-- Heading -->
+        <h2 class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+            OTP Register Not Implemented
+        </h2>
+        <!-- Button -->
+        <div>
+            <a href="{% url 'u_form' %}"
+                class="px-4 py-2.5 text-brightRed bg-white  rounded-full shadow-md hover:bg-gray-900 md:block ">
+            <button class="inline-block px-2 py-2 text-brightRed font-medium text-xs uppercase leading-tight">
+                    Click Here To Manually Register
+            </button></a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+
+<footer class="bg-veryDarkBlue">
+    <!-- Flex Container -->
+    <div class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+        <!-- Logo and social links container -->
+        <div class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+            <div class="mx-auto my-6 text-center text-sm text-white md:hidden">
+                Copyright &copy; 2022, All Rights Reserved
+            </div>
+            <!-- Logo -->
+            <div>
+                <img src="{% static 'img/lgwhite.svg' %}" class="h-8 " alt="">
+            </div>
+            <!-- Social links container -->
+            <div class="flex justify-center space-x-4">
+            <!-- Link 1 -->
+            <a href="#">
+                <img src="{% static 'img/icon-facebook.svg' %}" alt="" class="h-8">
+            </a>
+            <!-- Link 2 -->
+            <a href="#">
+                <img src="{% static 'img/icon-youtube.svg' %}" alt="" class="h-8">
+            </a>
+            <!-- Link 3 -->
+            <a href="#">
+                <img src="{% static 'img/icon-twitter.svg' %}" alt="" class="h-8">
+            </a>
+            <!-- Link 4 -->
+            <a href="#">
+                <img src="{% static 'img/icon-pinterest.svg' %}" alt="" class="h-8">
+            </a>
+            <!-- Link 5 -->
+            <a href="#">
+                <img src="{% static 'img/icon-instagram.svg' %}" alt="" class="h-8">
+            </a>
+            </div>
+        </div>
+        <!-- List Container -->
+            <div class="flex justify-around space-x-32">
+                <div class="flex flex-col space-y-3 text-white">
+                    <a href="{% url 'home' %}" class="hover:text-brightRed">Home</a>
+                    <a href="{% url 'blood_banks' %}" class="hover:text-brightRed">Blood Banks</a>
+                    <a href="{% url 'donate' %}" class="hover:text-brightRed">Donate</a>
+                    <a href="{% url 'about_us' %}" class="hover:text-brightRed">About Us</a>
+                </div>
+
+                <div class="flex flex-col space-y-3 text-white">
+                    <a href="{% url 'admin_login' %}" class="hover:text-brightRed hover:bg-white rounded-md">Admin Login</a>
+                    <a href="{% url 'dep_login' %}" class="hover:text-brightRed">Department Login</a>
+                    <a href="" class="hover:text-brightRed">Privacy Policy</a>
+                </div>
+            </div>
+
+
+        <!-- Input Container -->
+        <div class="flex flex-col justify-between">
+            <form action="">
+                <div class="flex space-x-3">
+                    <input type="text" placeholder="Updates in your inbox" class="flex-1 px-4 rounded-full focus:outline-none">
+                    <button class="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none">Go</button>
+                </div>
+            </form>
+            <div class="hidden text-white text-xs md:block">Copyright &copy; 2022, All Rights Reserved
+              <div class="text-sm text-blueGray-500 font-light py-1">
+                Made by <a href="https://github.com/analogsoul13" class="text-brightRed hover:text-blue-400" target="_blank">Abin Mathew</a> with <a href="https://twitter.com/analogsoul13" class="text-blueGray-500 hover:text-blueGray-800" target="_blank"> Love</a>.
+              </div>
+            </div>
+        </div>
+    </div>    
+            <!-- Back to top button -->
+            <div class="flex flex-row justify-center transition-all duration-250">
+            <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block p-3 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5" id="btn-back-to-top">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+                </button>
+            </div>
+          
+</footer>
+
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'tw-elements/dist/js/index.min.js' %}"></script>
+
+
+</body>
+</html>

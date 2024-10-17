@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Department Details
+{% endblock %}
+
+{% block content %}
+
+<!-- Department Register Form -->
+{% load static %}
+<div class=" flex flex-row py-6 justify-items-center antialiased text-center">
+    <!--  -->
+    <div class="py-3 w-full sm:max-w-2xl sm:mx-auto">
+        <!-- Main Heading -->
+        <p class="font-sans text-3xl font-light">REGISTER</p>
+
+        <!-- Form Content Inside -->
+        <div class="mt-3 shadow-md rounded-lg bg-veryDarkBlue">
+            <div class="h-2 bg-brightRed rounded-t-md"></div>
+            <!-- Form -->
+            <form method="post" enctype="multipart/form-data" class="px-8 py-6 " name="depsignup" onsubmit="return checkPassword()">
+              {% csrf_token %}
+
+                <!-- Heading inside form field -->
+                <label for="" class="block font-bold text-gray-100">Enter correct details below</label>
+
+                <!-- Name field -->
+                <input type="text" placeholder="Department Name" name="depfname" class="border rounded-sm w-full h-3 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed" required pattern="[A-Za-z]+">
+
+                <input type="text" placeholder="Department Type" name="deplname" class="border rounded-sm w-full h-3 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed" required pattern="[A-Za-z]+">
+                <!-- Hint -->
+                <label for="departmenttype" class="form-label inline-block mb-2 text-xs text-gray-100">eg: Hospital , Organization, BloodBank</label>
+                              
+          <div class="md:flex justify-between md:space-x-2">
+
+                <!-- Mobile Number Field -->
+                <input type="tel" placeholder="Mobile Number" name="depmob" class="border rounded-sm w-full h-3 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed" required>
+
+                <!-- Pin -->
+                <input type="text" placeholder="Pin Code" name="deppin" class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+          </div>
+                <!-- Email field -->
+                <input type="email" placeholder="Email Address" name="depmail" class="border rounded-sm w-full h-3 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed" required>          
+                
+
+                                
+
+                <!-- Address field -->
+                <div class="flex item-center">
+                  <div class="mb-3 w-full">
+                    <label for="exampleFormControlTextarea1" class="form-label inline-block mb-2 text-xs text-gray-100"
+                      >Enter Full Address</label
+                    >
+                    <textarea name="depaddress"
+                      class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                      "
+                      rows="2"
+                      placeholder="Address"
+                    ></textarea>
+                  </div>
+                </div>
+           
+
+
+
+                <!-- Password -->
+                <input type="password" placeholder="Password" name="pass" class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+                <!-- Confirm Password -->
+                <input type="password" placeholder="Re-Type Password" name="repass" class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+                
+                  <!-- Picture of Department -->
+                  <div class="flex justify-center">
+                    <div class="mb-3 w-96">
+                      <label for="formFile" class="form-label inline-block mb-2 text-xs text-gray-100">Add a Picture of Your Department or Organization</label>
+                      <input name="deppic" class="form-control
+                      block
+                      w-full
+                      px-3
+                      
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded-sm
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" required>
+                    </div>
+                  </div>
+
+                  <!-- Picture of ID field -->
+                  <div class="flex justify-center">
+                    <div class="mb-3 w-96">
+                      <label for="formFile" class="form-label inline-block mb-2 text-xs text-gray-100">Add a Picture of ID</label>
+                      <input name="depidpic" class="form-control
+                      block
+                      w-full
+                      px-3
+                      
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded-sm
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" required>
+                    </div>
+                  </div>
+                <!-- About -->
+                <div class="flex item-center">
+                    <div class="mb-3 w-full">
+                      <label for="exampleFormControlTextarea1" class="form-label inline-block mb-2 text-xs text-gray-100"
+                        >About your organization</label
+                      >
+                      <textarea name="depabout"
+                        class="
+                          form-control
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                        "
+                        rows="3"
+                        placeholder="Write here"
+                      ></textarea>
+                    </div>
+                  </div>
+             
+                   <!-- Register Button -->
+                   <div class="flex flex-col items-center">
+                   <button type="submit" class="w-44 mt-4 bg-brightRed text-white py-2 px-5 shadow-lg rounded-full hover:bg-brightRedLight" name="depbutton">Register Now</button>
+                   <a href="{% url 'dep_login' %}" class="text-xs text-brightRed mt-3">Login</a>
+                  </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- redirect to dashboard if no errors when dding data to database -->
+{% if error == "no" %}
+
+<script>
+
+    alert('Requested Succesfully'); 
+    window.location=("{% url 'dep_login' %}");
+
+</script>
+{% endif %}
+
+
+<!-- Display error message if there is any error  when dding data to database -->
+{% if error == "yes" %}
+
+
+<script>
+    alert('Something went wrong , Try again..!'); 
+</script>
+{% endif %}
+
+
+{% endblock %}

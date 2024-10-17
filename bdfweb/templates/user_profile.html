@@ -1,0 +1,130 @@
+{% extends 'user_base.html' %}
+
+{% block title %} 
+    Your Profile
+{% endblock %}
+
+    
+{% block content %}
+
+ <!-- Profile Details-->
+ {% load static %}
+
+ <div class="flex flex-col md:w-full md:max-h-full justify-center">
+  <div class="flex flex-col w-full h-full justify-center items-center">
+    <img src="{{ donor.userpic.url }}" alt="User Avatar" class="rounded-full w-52 shadow-xl">
+    <label for="userpic" class="block mb-2 mt-2 text-xs text-brightRed text-center">Change Profile Pic</label>
+                  <input type="file"
+                  name="userpic"
+                  class="form-control text-sm mt-2
+                  block
+                  w-24
+                  px-3
+                  py-1
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+              
+  </div>
+
+  <!-- Form -->
+  <form method="post" enctype="multipart/form-data" class="px-8 py-6" role="form" name="usersignup" onsubmit="return checkuserpass()">
+    {% csrf_token %}
+
+    <!-- Heading inside form -->  
+        <div class="md:flex justify-between md:space-x-2">
+            <!-- First Name -->
+            <input type="text" placeholder="First Name" name="firstname" value="{{donor.user.first_name}}" class=" text-sm border w-full md:w-1/2 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required pattern="[A-Za-z]+">
+            <!-- Last Name -->
+            <input type="text" placeholder="Last Name" name="lastname" value="{{donor.user.last_name}}" class=" text-sm border w-full md:w-1/2 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required pattern="[A-Za-z]+">
+
+        </div>
+
+        <div class="md:flex justify-between">
+
+            <!-- Age Field -->
+        
+            <input type="numeric" placeholder="Age" value="{{donor.userdob}}" name="userage" min="18" max="40" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+            <!-- Place field -->
+            <input type="text" placeholder="Place" value="{{donor.place}}" name="userplace" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+            <!-- Zip -->
+            <input type="text" placeholder="Pin Code" value="{{donor.userpin}}" name="userpincode" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+        </div>
+
+        <!-- Mobile Number Field -->
+        <input type="tel" placeholder="Mobile Number" value="{{donor.contact}}" name="usermob" class="text-sm border w-full  h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+        <!-- Email Field -->
+        <input type="email" placeholder="E-Mail" value="{{donor.user.username}}" name="usermail" class="text-sm border w-full  h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm">
+
+        <!-- Heading -->
+        <label for="userbloodgroup" class="block text-xs font-light text-brightRed mt-4 text-center">Select Your Blood Group</label>
+
+        <!-- Select Blood Group -->
+        <select name="userbloodgroup" class="form-select appearance-none
+            mt-2
+            block
+            w-full
+            px-3
+            py-2
+            text-sm
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding bg-no-repeat
+            border border-solid border-gray-300
+            rounded-sm
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+            <option selected>{{donor.userbloodgroup}}</option>
+            <option value="opositive">O +ve</option>
+            <option value="onegative">O -ve</option>
+            <option value="apositive">A +ve</option>
+            <option value="anegative">A -ve</option>
+            <option value="bpositive">B +ve</option>
+            <option value="bnegative">B -ve</option>
+            <option value="abpositive">AB +ve</option>
+            <option value="abnegative">AB -ve</option>
+        </select>
+  
+
+        <!-- Register Button -->
+        <div class="flex justify-center">
+        <button type="submit" class="mt-4 bg-brightRed text-white py-2 px-5 rounded-full hover:bg-brightRedLight shadow-lg items-center">Save</button>
+        </div>
+</form>
+
+ </div>
+
+ <!-- redirect to dashboard if no errors when dding data to database -->
+{% if error == "no" %}
+
+<script>
+
+    alert('Details Edited Succesfully'); 
+    window.location=("{% url 'user_profile' %}");
+
+</script>
+{% endif %}
+
+
+<!-- Display error message if there is any error  when dding data to database -->
+{% if error == "yes" %}
+
+
+<script>
+    alert('Something went wrong , Try again..!'); 
+</script>
+{% endif %} 
+
+ {% endblock %}

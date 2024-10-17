@@ -1,0 +1,171 @@
+{% extends 'user_base.html' %}
+
+{% block title %} 
+    Take Appointment
+{% endblock %}
+
+    
+{% block content %}
+
+<!-- User Fill Form for Appointment  -->
+<div class=" flex flex-row py-6 justify-center antialiased">
+    <!--  -->
+    <div class="py-3 sm:max-w-xl sm:mx-auto">
+        <!-- Heading -->
+        <p class="text-3xl font-light text-brightRed text-center">Enter Details for Your Appointment</p>
+        <div class="mt-3 bg-white shadow-md rounded-lg">
+            <div class="h-2 bg-brightRed rounded-t-md"></div>
+            <!-- Form -->
+            <form method="post" enctype="multipart/form-data" class="px-8 py-6" role="form" name="makeappointment" onsubmit="">
+                {% csrf_token %}
+
+            
+            <!-- Heading inside form -->
+            <label class="block text-xs text-gray-400 text-center">You will get appointment confirmation within 24hours.</label>
+            <div class="flex justify-center">
+                <a href="{% url 'user_home' %}" ><p class="block text-sm text-center text-brightRed">Learn More</p></a>
+            </div>
+                
+                
+            <div class="md:flex justify-between md:space-x-2">
+                <!-- First Name -->
+                <input type="text" placeholder="First Name" name="donorfname" class=" text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required pattern="[A-Za-z]+">
+                <!-- Last Name -->
+                <input type="text" placeholder="Last Name" name="donorlname" class=" text-sm border w-full h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required pattern="[A-Za-z]+">
+
+            </div>
+
+            <div class="md:flex justify-between">
+
+                <!-- Age Field -->
+               
+                <input type="number" placeholder="Age" name="donorage" min="18" max="80" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+                <!-- Place field -->
+                <input type="text" placeholder="Place" name="donorplace" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+                <!-- Pin -->
+                <input type="text" placeholder="Pin Code" name="donorpin" class="text-sm border w-full md:w-1/4 h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+            </div>
+
+                 <!-- Mobile Number Field -->
+                 <input type="tel" placeholder="Mobile Number" name="donormob" class="text-sm border w-full  h-5 px-4 py-4 mt-2 hover:outline-none focus-outline-none focus:ring-1 focus:ring-brightRed rounded-sm" required>
+
+                
+                 <!-- Heading -->
+                <label for="donorbloodgroup" class="block text-xs font-light text-brightRed mt-4 text-center">Select Your Blood Group</label>
+
+                <!-- Select Blood Group -->
+                <select name="donorbloodgroup" class="form-select appearance-none
+                    mt-2
+                    block
+                    w-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded-sm
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" required>
+                    <option value="opositive">O +ve</option>
+                    <option value="onegative">O -ve</option>
+                    <option value="Apositive">A +ve</option>
+                    <option value="anegative">A -ve</option>
+                    <option value="bpositive">B +ve</option>
+                    <option value="bnegative">B -ve</option>
+                    <option value="abpositive">AB +ve</option>
+                    <option value="abnegative">AB -ve</option>
+                </select>
+
+                 <!-- Heading -->
+                 <label for="donorbloodgroup" class="block text-xs font-light text-brightRed mt-4 text-center">Selected BloodBank </label>
+              
+                <!-- Select Blood Bank -->
+                <select name="donorbloodbank" class="form-select appearance-none
+                    mt-2
+                    block
+                    w-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded-sm
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" required>
+                    <option value="{{department.user}}">{{ department.user.first_name }} {{ department.user.last_name }}</option>}
+                </select>
+              
+
+                <!-- Heading -->
+                <label for="userrelationwithpatient" class="block text-xs font-light text-brightRed mt-4 text-center">Prefered Date </label>
+                
+                <!-- Appointment Date Input -->
+                    <div class="">
+                      <input type="date" name="donorappointmentdate"
+                        class="form-control block w-full px-3 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white outline-none focus:border-brightRed focus:outline-none"
+                        placeholder="Select a date" data-mdb-toggle="datepicker" required />
+                    </div>
+                  
+                
+                 <!-- Heading -->
+                 <label for="donorbloodgroup" class="block text-sm font-light text-brightRed mt-4 text-center">Do you want to be a regular donor or this is for just once?</label>
+                 <label for="donorbloodgroup" class="block text-xs font-light text-gray-500 mt-4 text-center">Note : If you selected just once we will never notify if there is a need , but you can change it back to regular in settings.</label>
+                    <!-- User want to be regular donor or not -->
+
+                <select name="regulardonorornot" class="form-select appearance-none
+                mt-2
+                block
+                w-full
+                px-3
+                py-2
+                text-sm
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding bg-no-repeat
+                border border-solid border-gray-300
+                rounded-sm
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" required>
+                <option value="Yes">I want to be a regular donor</option>
+                <option value="No">Just for this time now</option>
+            </select>
+                
+                   <!-- Register Button -->
+                <div class="flex justify-center mt-6">
+                   <button type="submit" class="mt-4 bg-brightRed text-white py-2 px-5 rounded-full hover:bg-brightRedLight shadow-lg items-center">Make Appointment </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{% if error == "no" %}
+<script>
+    alert('Appointment Request Has Been Send. Wait For Confirmation .')
+    window.location=("{% url 'user_dashboard' %}");
+</script>
+{% endif %}
+
+
+{% if error == "yes" %}
+<script>
+    alert('Cannot take appointments now ! Try after sometime ...  ')
+</script>
+{% endif %}
+
+{% endblock %}

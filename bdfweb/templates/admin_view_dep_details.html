@@ -1,0 +1,225 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} 
+    View Department Details
+{% endblock %}
+
+    
+{% block content %}
+
+<div class="flex flex-col bg-white w-full h-auto rounded-md">
+    <div class="flex justify-center p-4">
+        <p class="text-2xl item-center">View Department Details</p>
+    </div>
+    <div class="bg-gray-700 h-1"></div>
+
+    <!-- Name of Dep -->
+    <div class="flex flex-row w-full h-full">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Name of Department :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100 justify-start">
+            <p class="text-gray-800 text-md font-bold font-sans p-2">{{department.user.first_name}} {{department.user.last_name}}</p>
+
+        </div>
+        
+    </div>
+
+    <!-- Contact & Email -->
+    <div class="flex flex-row w-full h-14">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Contact No & Email :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100">
+            <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.contact}}, {{department.user.username}}</p>
+        </div>
+      
+    </div>
+
+    <!-- Address -->
+    <div class="flex flex-row w-full h-14">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Address :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100">
+            <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.address}}</p>
+        </div>
+       
+    </div>
+
+    <!-- Pin -->
+    <div class="flex flex-row w-full h-14">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Pin :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100">
+            <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.deppin}}</p>
+        </div>
+       
+    </div>
+
+    <!-- Picture -->
+    <div class="flex flex-row w-full h-24">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Picture :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100 p-2">
+            <img src="{{department.deppic.url}}" alt="Department Image" class="scale-100 ">
+        </div>
+       
+    </div>
+
+    <!-- ID -->
+    <div class="flex flex-row w-full h-24">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">ID :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100 p-2">
+            <img src="{{department.depidpic.url}}" alt="Department Id" class="scale-100">
+        </div>
+       
+    </div>
+
+    <!-- About -->
+    <div class="flex flex-row w-full h-full">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">About :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100">
+            <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.aboutdep}}</p>
+        </div>
+       
+    </div>
+
+    <!-- Reg date -->
+    <div class="flex flex-row w-full h-14">
+
+        <div class="flex w-1/2 justify-end">
+            <p class="text-gray-800 text-md font-sans p-3">Registration Date :</p>
+        </div>
+        <div class="flex w-1/2 bg-red-100">
+            <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.regdate}}</p>
+        </div>
+       
+    </div>
+
+    <!-- Current Status -->
+    {% if department.status == "pending" %}
+    <div>
+        <form method="post">
+    
+        <div class="flex flex-row w-full h-full">
+            
+
+            <div class="flex w-1/2 justify-end">
+                <p class="text-gray-800 text-md font-sans p-3">Status :</p>
+            </div>
+            <div class="flex w-1/2 bg-red-100 p-2">
+                
+                
+                    {% csrf_token %}
+                        <select class="form-select appearance-none
+                            block
+                            max-w-full
+                            text-base
+                            font-normal
+                            text-gray-700
+                            bg-white bg-clip-padding bg-no-repeat
+                            border border-solid border-gray-300
+                            rounded
+                            transition
+                            ease-in-out
+                            m-0
+                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example" name="status">
+                            <option selected>Pending</option>
+                            <option value="approved">Approve</option>
+                            <option value="rejected">Reject</option>
+                        </select>             
+            </div>
+        
+        </div>
+
+        <!-- Admin remark -->
+        <div class="flex flex-row w-full h-full">
+
+            <div class="flex w-1/2 justify-end">
+                <p class="text-gray-800 text-md font-sans p-3">Admin Remark :</p>
+            </div>
+            <div class="flex flex-col w-1/2 bg-red-100 p-2">
+                <textarea class="form-control block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="remark" id="exampleFormControlTextarea1" rows="3" placeholder="Your message"></textarea>
+            </div>
+        
+        </div>
+
+        <div class="flex space-x-2 justify-center p-3">
+            <button type="submit" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</button>
+        </div>
+    </form>
+    </div>
+
+    {% else %}
+        <!-- Status -->
+        <div class="flex flex-row w-full h-14">
+
+            <div class="flex w-1/2 justify-end">
+                <p class="text-gray-800 text-md font-sans p-3">Status :</p>
+            </div>
+            <div class="flex w-1/2 bg-red-100">
+                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.status}}</p>
+            </div>
+           
+        </div>
+        
+        <div class="flex flex-row w-full h-14">
+
+            <div class="flex w-1/2 justify-end">
+                <p class="text-gray-800 text-md font-sans p-3">Admin Remark :</p>
+            </div>
+            <div class="flex w-1/2 bg-red-100">
+                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.adminremark}}</p>
+            </div>
+           
+        </div>
+
+         <!-- Updation Date -->
+        <div class="flex flex-row w-full h-full">
+
+            <div class="flex w-1/2 justify-end">
+                <p class="text-gray-800 text-md font-sans p-3">Updation Date :</p>
+            </div>
+            <div class="flex w-1/2 bg-red-100">
+                <p class="text-gray-800 text-md font-bold font-sans p-3 pl-6">{{department.updationdate}}</p>
+            </div>
+                
+        </div>
+
+    {% endif %}
+
+    
+
+</div>
+<div class="flex justify-center p-6">
+    <p class="text-gray-500 text-xs">analogsoul13</p>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Status & remark has been updated succesfully');
+    window.location=("{% url 'dep_details' department.id %}");
+</script>
+{% endif %}
+
+{% if error ==  "yes" %}
+<script>
+    alert('Something went wrong , Try Again...')
+</script>
+{% endif %}
+
+{% endblock %}

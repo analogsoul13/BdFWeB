@@ -1,0 +1,104 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}
+Approved Requests
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-gradient-to-r from-violet-500 to-black w-full h-full">
+
+    {% load static %}
+
+<!-- Table -->
+<!-- component -->
+<section class="antialiased bg-gray-100 text-gray-600 h-full px-4">
+    <div class="flex flex-col w-full pt-6 h-full">
+        <!-- Table -->
+        <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <header class="px-5 py-4 border-b border-gray-100">
+                <h2 class="font-semibold text-gray-800">All Approved Fundrasing Requests Assigned to Departments</h2>
+            </header>
+            <div class="p-3">
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full">
+                        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                            <tr>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">S.No</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Patient</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Requested By</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Mobile</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">Place/PIN</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">Assigned To</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">Reason</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">Date</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-gray-100">
+                            {% for i in fundraisers %}
+                            <tr>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="font-medium text-gray-800">{{forloop.counter}}</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{i.patientpic.url}}" width="40" height="40" alt="Avatar"></div>
+                                        <div class="font-medium text-gray-800">{{ i.fname }} {{ i.lname }}</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left hover:text-blue-500"><a href="#">{{i.user}}</a></div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-green-500">{{i.mob}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-md text-center">{{i.place}} - {{ i.pin }}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <a href="#"><div class="text-md text-center hover:text-blue-500">{{i.selecteddepartment}}</div></a>
+                                </td>
+                                <td class="p-2 whitespace-wrap">
+                                    <div class="text-md text-center">{{i.description}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-md text-center">{{i.date}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-md text-center"><a href="{% url 'view_fundraising_details' i.id %}" class="text-blue-500 hover:text-blue-700">View Details</a> </div>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+{% endblock %}
+

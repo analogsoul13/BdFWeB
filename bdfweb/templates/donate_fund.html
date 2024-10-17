@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Help Fundrasing
+{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center">
+  <div class="form-check form-switch">
+    <input class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    <label class="form-check-label inline-block text-gray-800" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+  </div>
+</div>
+
+<div class="px-10 py-10">
+  <!-- grid container -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-20 gap-y-14">
+      <!--card 1 -->
+      {% for i in fundraiserfinaldata %}
+      <div class="flex flex-col bg-white rounded-md shadow-2xl">
+          <img src="{{i.patientpic.url}}" alt="Campaign Image"
+              class="h-48 object-cover rounded-tl-md rounded-tr-md">
+
+          <div class="px-3 py-2">
+              <h1 class=" text-brightRed font-semibold">{{i.fname}} {{i.lname}}</h1>
+              <p class="text-darkGrayishBlue text-xs mt-1">Age : {{i.age}}</p>
+              <p class="text-lg">₹46002 raised of ₹{{i.amount}}</p>
+              <!-- Progress Bar -->
+              <div class="w-full bg-gray-200 h-1">
+                <div class="bg-brightRedLight h-1" style="width: 45%"></div>
+              </div>              
+              <p class="text-darkGrayishBlue text-xs mt-3">{{i.description}}</p>
+              <p class="text-md">{{i.place}}, {{i.pin}} - {{i.updationdate}}</p>
+              <div class="flex flex-row justify-between">
+                <a href="{% url 'contribute' %}">
+                  <button type="button" class="mt-4 inline-block px-6 py-2.5 bg-brightRed text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-brightRedLight hover:shadow-lg focus:bg-brightRedSupLight focus:shadow-lg focus:outline-none focus:ring-0 active:bg-brightRedSupLight active:shadow-lg transition duration-150 ease-in-out">Donate</button>
+                </a>
+                          <!-- Share Button -->
+                  <button type="button" class="mt-4 inline-block px-6 py-2.5 text-brightRed font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-xl focus:bg-none focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-300 active:shadow-lg transition duration-150 ease-in-out">Share</button>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div> 
+
+  <!-- Pagination -->
+  <div class="flex justify-center h-32">
+    <nav aria-label="Page navigation example">
+      <ul class="flex list-style-none"> 
+        {% if fundraiserfinaldata.has_previous %}
+        <li class="page-item"><a
+          class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+          href="/donate/?page={{fundraiserfinaldata.previous_page_number}}">Previous</a></li>
+        {% endif %}
+
+        {% for n in totalPagelist %}
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-50 hover:bg-brightRed focus:shadow-md"
+            href="/donate/?page={{n}}">{{n}}<span class="visually-hidden">(current)</span></a></li>
+        {% endfor %}
+        
+        {% if departmentfinaldata.has_next %}
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+            href="/donate/?page={{totalpage}}">Last</a></li>
+        <li class="page-item"><a
+            class="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+            href="/donate/?page={{fundraiserfinaldata.next_page_number}}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+{% endblock %}
