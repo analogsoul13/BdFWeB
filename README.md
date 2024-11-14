@@ -2,8 +2,8 @@
 Blood Donation and Fundraising Website Connecting hospitals and users
 AWS Link : 
 
-User Registration
-Department registration for Hospitals
+User Registration, 
+Department registration for Hospitals, 
 Admin Panel
 
 ![Screenshot 2023-02-03 at 08-02-05 Welcome](https://github.com/analogsoul13/BdFWeB/assets/106916745/1d8c1e9a-5a9c-4d3a-8a14-ca4411f7e500)
